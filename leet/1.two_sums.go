@@ -400,10 +400,45 @@ func RomanToInteger(roman string) int {
     // We are going to convert some roman numeral strings to int 
 
     // Create map for strings to ints 
+    romans := make(map[string]int)
+    romans["I"] = 1
+    romans["IV"] = 4
+    romans["V"] = 5
+    romans["IX"] = 9
+    romans["X"] = 10
+    romans["XL"] = 40
+    romans["L"] = 50
+    romans["XC"] = 90
+    romans["C"] = 100
+    romans["CD"] = 400
+    romans["D"] = 500
+    romans["CM"] = 900
+    romans["M"] = 1000
 
-    // Read right to left convert 
+    rommanArray := []byte(roman)
+    l := len(rommanArray)
+    total := 0
 
-    return 1
+    for l > 1 {
+        fmt.Println("LoopS", l)
+        chars :=  string(rommanArray[l - 2]) + string(rommanArray[l -1])
+        value := romans[string(chars)]
+        if value == 0 {
+            // its invalid therefore its a single value 
+             total += romans[string(rommanArray[l -1])]
+             l --
+        } else  {
+            total += value
+            l -= 2
+        }
+        fmt.Println("LoopE",l, chars, value, total)
+    }
+
+    if l == 1 {
+        return total + romans[string(rommanArray[0])]
+    } else {
+        return total    
+    }
 
 
 }

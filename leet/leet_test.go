@@ -155,7 +155,24 @@ func TestRomanToInteger(t *testing.T) {
 	})
 
 	t.Run("Large", func( t *testing.T) {
-		assert.Equal(t, leet.RomanToInteger("MMCXI"), 2106)
+		assert.Equal(t, leet.RomanToInteger("MMCXI"), 2111)
 	})
+
+	t.Run("THREEE", func( t *testing.T) {
+		assert.Equal(t, leet.RomanToInteger("III"), 3)
+	})
+
+	t.Run("TEN", func( t *testing.T) {
+		assert.Equal(t, leet.RomanToInteger("X"), 10)
+	})
+
+	t.Run("LV ", func( t *testing.T) {
+		assert.Equal(t, leet.RomanToInteger("LVIII"), 58)
+	})
+
+	t.Run("Larger", func( t *testing.T) {
+		assert.Equal(t, leet.RomanToInteger("MCMXCIV"), 1994)
+	})
+
 
 }

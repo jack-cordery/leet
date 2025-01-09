@@ -439,6 +439,39 @@ func RomanToInteger(roman string) int {
     } else {
         return total    
     }
+}
 
-
+func LongestCommonPrefix(strs []string) string {
+    // Loop through the list of strings on each character checking whether there is a common prefix and continuining until there isnt 
+    working := true
+    i := 0
+    output := ""
+    smLength := 400
+    for _, str := range strs {
+        smLength = min(smLength, len(str))
+        if str == "" {
+            return output
+        }
+    }
+    
+    for working {
+        char := strs[0][i]
+        for _, str := range strs {
+          newChar := str[i]
+          if newChar != char {
+            working = false
+            break
+          }
+          char = newChar  
+        }
+        if working {
+            i++
+            output += string(char)
+        }
+        if len(output) == smLength {
+            return output
+        }
+    }
+    
+    return output
 }

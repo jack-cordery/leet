@@ -174,5 +174,30 @@ func TestRomanToInteger(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("MCMXCIV"), 1994)
 	})
 
+}
 
+func TestLongestCommonPrefix(t *testing.T) {
+	t.Run("No case", func(t *testing.T)  {
+		assert.Equal(t, "", leet.LongestCommonPrefix([]string{"abc", "bcd"}))
+	})
+
+	t.Run("One", func(t *testing.T)  {
+		assert.Equal(t, "a", leet.LongestCommonPrefix([]string{"abc", "acd"}))
+	})
+
+	t.Run("Many", func(t *testing.T)  {
+		assert.Equal(t, "abc", leet.LongestCommonPrefix([]string{"abc", "abc"}))
+	})
+
+	t.Run("Leet1", func(t *testing.T)  {
+		assert.Equal(t, "fl", leet.LongestCommonPrefix([]string{"flower", "flow", "flight"}))
+	})
+
+	t.Run("Leet2", func(t *testing.T)  {
+		assert.Equal(t, "", leet.LongestCommonPrefix([]string{"dog","racecar","car"}))
+	})
+
+	t.Run("Empty", func(t *testing.T)  {
+		assert.Equal(t, "", leet.LongestCommonPrefix([]string{""}))
+	})
 }

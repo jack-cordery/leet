@@ -201,3 +201,36 @@ func TestLongestCommonPrefix(t *testing.T) {
 		assert.Equal(t, "", leet.LongestCommonPrefix([]string{""}))
 	})
 }
+
+
+// func TestThreeSum(t *testing.T) {
+// 	t.Run("No case", func(t *testing.T)  {
+// 		out := [][]int{{1, -1, 0}}
+// 		assert.Equal(t, out , leet.ThreeSum([]int{1, 1, -1 , 0}))
+// 	})
+// }
+
+func TestIsValid( t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.IsValid("()"))
+	})
+
+	t.Run("Independent brackets", func(t *testing.T) {
+		assert.Equal(t, true, leet.IsValid("()[]{}"))
+	})
+
+	t.Run("Nested brackets", func(t *testing.T) {
+		assert.Equal(t, true, leet.IsValid("([])"))
+	})
+
+
+	t.Run("Unclosed", func(t *testing.T) {
+		assert.Equal(t, false, leet.IsValid("(]"))
+	})
+
+	t.Run("No opener", func(t *testing.T) {
+		assert.Equal(t, false, leet.IsValid("]"))
+	})
+
+
+}

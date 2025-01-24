@@ -475,3 +475,57 @@ func LongestCommonPrefix(strs []string) string {
     
     return output
 }
+
+
+
+// func ThreeSum(ints []int) [][]int {
+//     // We are going to implement the 
+//     // for each value is there a pair that sums to the negative 
+//     out := [][]int{}
+//     for i:=0; i < len(ints); i++ {
+//         var restOfSlice []int
+//         if i == 0  {
+//             restOfSlice = ints[1:]
+//         } else {
+//             restOfSlice = append(ints[:i - 1], ints[i + 1:]...)    
+//         }
+//         // I want to loop through the rest of the slices looking for two combos, stroing to make sure i dont bother with duplicates
+        
+//         out = append(out, append(twos, ints[i]))
+//     }
+//     return out
+// }
+
+func IsValid(s string) bool {
+
+   // store state with an array of runes i.e. ["("] then can essentially check 
+   // that they are opened and closed in the right order 
+    // Think will try and use pointers to check for valid closes and track opens
+    var state []byte
+    bracketMap := make(map[byte]byte)
+    bracketMap[byte(')')] = byte('(')
+    bracketMap[byte(']')] = byte('[')
+    bracketMap[byte('}')] = byte('{')
+
+    for i:=0; i < len(s); i++ {
+        // if j is an open bracket then set that to active 
+        // if j is a close bracket check that it was opened and then set to not active
+        // if not opened then fail 
+        currentChar := string(s[i])
+        if currentChar == "[" || currentChar == "(" || currentChar == "{" {
+            // open
+            state = append(state, s[i]) 
+        } else {
+            //close
+            if len(state) == 0 {
+                return false
+            }
+            if state[len(state) - 1] != bracketMap[s[i]] { // not sure if s[i] is the byte representation
+                // not closed corectectly so return false
+                return false
+            }
+            state = state[:len(state) - 1] 
+        }
+    }
+    return len(state) == 0 
+}

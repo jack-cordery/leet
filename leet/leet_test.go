@@ -234,3 +234,17 @@ func TestIsValid( t *testing.T) {
 
 
 }
+
+func TestThreeSum(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, [][]int{{1, 2, -3}}, leet.ThreeSum([]int{1, 2, -3}))
+	})
+
+	t.Run("Zeroes", func(t *testing.T) {
+		assert.Equal(t, [][]int{{0, 0, 0}}, leet.ThreeSum([]int{0, 0, 0}))
+	})
+
+	t.Run("Multiple Zeroes", func(t *testing.T) {
+		assert.Equal(t, [][]int{{-1, 0, 1}, {-1, 2, -1}, {0, 1, -1}}, leet.ThreeSum([]int{-1, 0, 1, 2 , -1, -4}))
+	})
+}

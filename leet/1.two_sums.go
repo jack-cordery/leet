@@ -529,3 +529,28 @@ func IsValid(s string) bool {
     }
     return len(state) == 0 
 }
+
+//TODO: So this works apart from the duplication condition, i thought i could get around it with maps to make distinct but alas that didnt work
+// Im sure with a slightly different approach it would resolve  
+func ThreeSum(nums []int) [][]int {
+    // So as discussed in the notes I am going to take the approach of looping through 
+    // taking each number a_i and then loop through the list to the right checking values that - sum to that value
+    var output [][]int
+    for i:= 0; i < len(nums) - 2; i++ {
+        // so now we need to get the value at i and get the slice to the right of it that we will loop through 
+        val, rest := nums[i], nums[i+1:]
+        fmt.Println("Start of loop", i, val, rest)
+        deltas := make(map[int]int)
+        for j:=0; j < len(rest); j++ {
+            delta := -val - rest[j]
+            fmt.Println("Inside of loop", j, delta)
+            if j, found := deltas[rest[j]]; found {
+                output = append(output, []int{val, rest[j], -(val + rest[j])})
+                fmt.Println("Found loop", j, found,  delta, val, rest[j])
+            }
+            deltas[- val - rest[j]] = j
+            fmt.Println("Exit loop",deltas)
+        }
+    }
+    return output
+}

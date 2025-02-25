@@ -248,3 +248,21 @@ func TestThreeSum(t *testing.T) {
 		assert.Equal(t, [][]int{{-1, 0, 1}, {-1, 2, -1}, {0, 1, -1}}, leet.ThreeSum([]int{-1, 0, 1, 2 , -1, -4}))
 	})
 }
+
+func TestLetterCombinations(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, []string{"ad","ae","af","bd","be","bf","cd","ce","cf"}, leet.LetterCombinations("23"))
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		assert.Equal(t, []string{}, leet.LetterCombinations(""))
+	})
+
+	t.Run("one letter", func(t *testing.T) {
+		assert.Equal(t, []string{"a", "b", "c"}, leet.LetterCombinations("2"))
+	})
+
+	t.Run("4 numbered keys", func(t *testing.T) {
+		assert.Equal(t, []string{"w", "x", "y", "z"}, leet.LetterCombinations("9"))
+	})
+}

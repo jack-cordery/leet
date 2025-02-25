@@ -554,3 +554,50 @@ func ThreeSum(nums []int) [][]int {
     }
     return output
 }
+
+
+func ThreeSumClosest(nums []int, target int) int {
+    // So this is the same as threeSum apart from that we just want to return the closest 
+    // possible sum to a given value 
+    // The idea then is to three sum as before just tracking the closest deltas 
+    // Early break if we hit zero 
+    
+    return 0
+}
+
+
+func LetterCombinations(digits string) []string{
+    // So i want to take an input of a string of digits that represent a mapping of a 
+    // old phone keyboard i.e. 2 -> a,b,c, etc. Return all combos 
+    numberMap := make(map[rune][]string)
+    numberMap['2'] = []string{"a", "b","c"}
+    numberMap['3'] = []string{"d", "e","f"}
+    numberMap['4'] = []string{"g", "h","i"}
+    numberMap['5'] = []string{"j", "k","l"}
+    numberMap['6'] = []string{"m", "n","o"}
+    numberMap['7'] = []string{"p", "q","r", "s"}
+    numberMap['8'] = []string{"t", "u","v"}
+    numberMap['9'] = []string{"w", "x","y", "z"}
+
+    if digits == "" {
+        return []string{}
+    }
+
+    // brute force 
+    // loop through each number and for each number 
+    result := numberMap[rune(digits[0])]
+    for i:=1; i < len(digits); i++ {
+        digit := digits[i]
+        loopCharSet := numberMap[rune(digit)]
+        newResult := []string{}
+        for _, r := range(result) {
+            // We want to iterate over the current reuslt and add all permutation for next digit
+            // "a" -> "ad", "ae", "af"
+            for _, c := range(loopCharSet) {
+                newResult = append(newResult, r + c)
+            }
+        }
+        result =  newResult
+    } 
+    return result
+}

@@ -266,3 +266,130 @@ func TestLetterCombinations(t *testing.T) {
 		assert.Equal(t, []string{"w", "x", "y", "z"}, leet.LetterCombinations("9"))
 	})
 }
+
+func TestRemoveNthFromEnd(t *testing.T) {
+
+	t.Run("base case", func (t *testing.T)  {
+		assert.Equal(t, &leet.ListNode{Val: 1} ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, 1))
+	}) 
+	t.Run("base case 2", func (t *testing.T)  {
+		assert.Equal(t, &leet.ListNode{Val: 2} ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, 2))
+	}) 
+
+	t.Run("base case long", func (t *testing.T)  {
+		assert.Equal(t, &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 3, Next: &leet.ListNode{Val: 5}}}} ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 3, Next: &leet.ListNode{Val: 4, Next: &leet.ListNode{Val: 5}}}}}, 2))
+	}) 
+	// t.Run("single", func (t *testing.T)  {
+	// 	assert.Equal(t, nil ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1}, 1))
+	// }) 
+}
+
+func TestGenerateParentheses(t *testing.T) {
+	t.Run("n=1", func(t *testing.T) {
+		assert.Equal(t, []string{"()"}, leet.GenerateParantheses(1))
+	})
+
+	t.Run("n=2", func(t *testing.T) {
+		assert.Equal(t, []string{ "(())", "()()"}, leet.GenerateParantheses(2))
+	})
+
+	t.Run("n=3", func(t *testing.T) {
+		assert.Equal(t, []string{"((()))","(()())","(())()","()(())","()()()"}, leet.GenerateParantheses(3))
+	})
+}
+
+func TestSwapPairs(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{Val:1}}, leet.SwapPairs(&leet.ListNode{1, &leet.ListNode{Val:2}}))
+	})
+
+	t.Run("base case - odd", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val:1}}}, leet.SwapPairs( &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}))
+	})
+
+	t.Run("base case 1234", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{4, &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}}, leet.SwapPairs(&leet.ListNode{1, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val:4}}}}))
+	})
+}
+
+// func TestReverseKGroup(t *testing.T) {
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, &leet.ListNode{1, &leet.ListNode{Val:2}}, leet.ReverseKGroup(&leet.ListNode{1, &leet.ListNode{Val:2}}, 1))
+// 	})
+
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{Val:1}}, leet.ReverseKGroup(&leet.ListNode{1, &leet.ListNode{Val:2}}, 2))
+// 	})
+
+// 	t.Run("base case - odd", func(t *testing.T) {
+// 		assert.Equal(t, &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}, leet.ReverseKGroup( &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}, 1))
+// 	})
+
+// 	t.Run("base case - odd", func(t *testing.T) {
+// 		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val:1}}}, leet.ReverseKGroup( &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}, 2))
+// 	})
+
+// 	t.Run("base case - odd", func(t *testing.T) {
+// 		assert.Equal(t, &leet.ListNode{1, &leet.ListNode{2, &leet.ListNode{Val:3}}}, leet.ReverseKGroup( &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}, 3))
+// 	})
+
+
+// }
+
+func TestMergeSortedArray(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		nums1 := []int{1,2,3,0,0,0}
+		nums2 := []int{2,5,6}
+		m, n := 3, 3 
+		expected := []int{1,2,2,3,5,6}
+		
+		leet.MergeSortedArray(nums1, nums2, m, n)
+
+		assert.Equal(t, expected, nums1)
+	})
+
+	t.Run("null case 1", func(t *testing.T) {
+		nums1 := []int{1}
+		nums2 := []int{}
+		m, n := 1, 0
+		expected := []int{1}
+
+		leet.MergeSortedArray(nums1, nums2, m, n)
+
+		assert.Equal(t, expected, nums1)
+	})
+	
+	t.Run("null case 2", func(t *testing.T) {
+		nums1 := []int{}
+		nums2 := []int{}
+		m, n := 0, 0
+		expected := []int{}
+
+		leet.MergeSortedArray(nums1, nums2, m, n)
+
+		assert.Equal(t, expected, nums1)
+	})
+
+	t.Run("null case 3", func(t *testing.T) {
+		nums1 := []int{0}
+		nums2 := []int{1}
+		m, n := 0, 1
+		expected := []int{1}
+
+		leet.MergeSortedArray(nums1, nums2, m, n)
+
+		assert.Equal(t, expected, nums1)
+	})
+
+	t.Run("interesting", func(t *testing.T) {
+		nums1 := []int{-1, 0, 0, 3, 3, 3, 0, 0, 0}
+		nums2 := []int{1,2,2}
+		m, n := 6, 3
+		expected := []int{-1, 0, 0, 1, 2, 2, 3, 3, 3}
+
+		leet.MergeSortedArray(nums1, nums2, m, n)
+
+		assert.Equal(t, expected, nums1)
+	})
+
+}

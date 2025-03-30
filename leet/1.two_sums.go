@@ -601,3 +601,213 @@ func LetterCombinations(digits string) []string{
     } 
     return result
 }
+
+func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
+    // So the interesting part of this is how do i know its the nth from end. Simplest way would be to go all the way to the end esentially unpacking it all and then repacking 
+    // Is there a cooler/smarter way?
+    nextNode := head
+
+    valueStore := []int{}
+    count := 0
+    
+    for (nextNode != nil) {
+        // Store values in an array and count the number to be repacked after 
+        count++
+        valueStore = append(valueStore, nextNode.Val)
+        nextNode = nextNode.Next
+     
+    }
+
+  
+
+    if count == 1 {
+        return nil
+    }
+
+    result := new(ListNode)
+    firstTracker := 0
+    for i:= count - 1; i >= 0; i-- {
+        curr := new(ListNode)
+        fmt.Println("Loop", i, curr)
+        if i == count - n  {  
+            // this is the one to remove so just skip
+            continue
+        } else {
+            curr.Val = valueStore[i]
+            if firstTracker == 0 {
+                curr.Next = nil
+                firstTracker++
+            } else {
+                curr.Next = result
+            }            
+            result = curr
+        }
+    }
+   
+    return result
+}
+
+
+func MergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+    // We are given two lists sorted in asceding order. We need to return a list containing all the elements of each lists, in ascending order
+    // Immedialty feels like a two pointer problem. i.e. have a pointer at a positiion on each list then incremenet the pointer of the smaller value and add it to the result 
+    // 
+    result := new(ListNode)
+    current := result
+    for (list1 != nil || list2 != nil) {
+        if (list2 != nil && list1 != nil && list1.Val <= list2.Val) || (list2 == nil) {
+            current.Next = list1
+            list1 = list1.Next
+        } else {
+            current.Next = list2
+            list2 = list2.Next
+        }
+        current = current.Next
+    }
+
+    return result.Next
+}
+
+func GenerateParantheses(n int) []string {
+    parantheses := []string{"()"}
+
+    for i:=1; i < n; i++ {
+        result := []string{}
+        for _, p := range(parantheses) { 
+            p1 := "(" + p + ")"
+            p2 := "()" + p
+            if p2 != p + "()" {
+                p3 := p + "()"
+                result = append(result, p1, p2, p3)
+            } else {
+                result = append(result, p1, p2, )
+            } 
+            parantheses = result
+        }
+    }
+    return parantheses
+}
+
+func SwapPairs(head *ListNode) *ListNode {
+    // Swap alternating pairs, if its even then we swap all pairs
+    // IF odd swap all until the last node 
+    // Are supposed to swap nores not values 
+    // Iterate through list and just replace the current list node with the next
+    dummy := &ListNode{Next:head}
+    prev, first := dummy, head
+
+    for first != nil && first.Next != nil {
+        nextPair := first.Next.Next
+        second := first.Next
+
+        second.Next = first 
+        first.Next = nextPair
+        prev.Next = second 
+
+        prev = first 
+        first = nextPair
+    }
+
+    return dummy.Next
+}
+
+// TODO: Finish this
+// func ReverseKGroup(head *ListNode, k int) *ListNode {
+//     // So i think the idea is that I have to take a hit somehwere. Either i would need to know in advance at what point to stop. Or i would need to backtrack
+//     // The former gives me a bit better simplicity in terms of code, and is only worse marginally
+//     // Idea is that by knowing the length of the linked list in advance i can know in advance when to stop for the last 
+
+//     if k == 1 {
+//         return head
+//     }
+
+//     lengthDummy, length := head, 0
+//     for lengthDummy != nil {
+//         length++
+//         lengthDummy = lengthDummy.Next
+//     }
+//     fmt.Printf("head is %d long \n", length)
+    
+//     nGroups := length / k
+//     remainder := length - length % k
+
+//     fmt.Printf("number of groups in linked list is %d and remainder is %d \n", nGroups, remainder)
+
+//     // Now I can reverse nodes up to the k-th element, reset and do that nGroup times and then stop leaving the remainders
+
+//     groupTrack := 0
+//     globalTrack := 0
+//     var prev, next *ListNode
+//     curr := head
+
+//     for curr != nil{
+//         fmt.Printf("Loop: groupTrack %d, globalTrack %d \n", groupTrack, globalTrack)
+//         fmt.Println("Curr: ", curr)
+//         fmt.Println("prev:", prev)
+//         fmt.Println("next: ", next)
+//         if groupTrack < k  && globalTrack < remainder  {
+//             fmt.Printf("Reverse block: ")
+//             next = curr.Next
+//             curr.Next = prev 
+//             fmt.Println("Curr: ", curr)
+//             fmt.Println("Curr.Next: ", curr.Next)
+//             fmt.Println("prev:", prev)
+//             fmt.Println("next: ", next)
+
+//             prev = curr
+//             curr = next   
+//             fmt.Println("Curr: ", curr)
+//             fmt.Println("prev:", prev)
+//             fmt.Println("next: ", next)
+//             groupTrack++
+//         } else {
+//             fmt.Printf("Skip block: ")
+//             // Here i need to set the 
+//             //curr.Next = prev
+//             // I need a dummy to point the first element at rather than nil 
+
+//             prev = curr 
+//             curr = curr.Next
+//             fmt.Println("Curr: ", curr)
+//             fmt.Println("prev:", prev)
+//             fmt.Println("next: ", next)
+//             groupTrack = 0 
+//         }
+//         globalTrack++
+//     } 
+
+//     // So full reverse works! thats good 
+//     // All the others fail, not so good.
+
+//     // temp, count := prev, 0
+//     // for temp != nil {
+//     //     count++
+//     //     fmt.Println(count,  temp)
+//     //     temp = temp.Next
+//     // }
+//     return prev
+// }
+
+func MergeSortedArray(nums1, nums2 []int, m, n int) {
+    for (n > 0 || m > 0) {
+        fmt.Println("pos: ", m, n)
+        var candidate1, candidate2 int 
+        if n == 0 {
+            break
+        }
+        if m == 0 {
+            nums1[n - 1] = nums2[n - 1]
+            n--
+            continue
+        }
+        candidate1, candidate2 = nums1[m - 1], nums2[n - 1]
+        
+        if candidate1 > candidate2 {
+            nums1[n + m - 1] = candidate1
+            m--
+        } else {
+            nums1[n + m - 1] = candidate2
+            n--
+        }
+    } 
+}

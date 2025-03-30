@@ -817,11 +817,9 @@ func RemoveElement(nums []int, val int) int {
     for i, tracker :=  1, 0; i <= len(nums); i++{
         fmt.Println("Loop: ", i, tracker, count, nums)
         if nums[i -1] == val {
-            fmt.Println("Value found at : ", i - 1)
             count++
             continue
         }
-        // fmt.Println("Insertion at: ", tracker, " with", nums[i])
         nums[tracker] = nums[i -1]
         tracker++
     } 

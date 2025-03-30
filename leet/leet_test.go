@@ -393,3 +393,35 @@ func TestMergeSortedArray(t *testing.T) {
 	})
 
 }
+
+
+func TestRemoveElement(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		nums := []int{3,2,2,3}
+		val := 3
+		expected := []int{2,2,2,3}
+		count := leet.RemoveElement(nums, val)
+		expectedCount := 2
+		assert.Equal(t, expected, nums)
+		assert.Equal(t, expectedCount, count )
+	})
+
+	t.Run("base case 2", func(t *testing.T) {
+		nums := []int{0,1,2,2,3,0,4,2}
+		val := 2
+		expected := []int{0,1,3,0,4,0,4,2}
+		count := leet.RemoveElement(nums, val)
+		expectedCount := 3
+		assert.Equal(t, expected, nums)
+		assert.Equal(t, expectedCount, count )
+	})
+	t.Run("null case", func(t *testing.T) {
+		nums := []int{0,1,2,2,3,0,4,2}
+		val := 5
+		expected := []int{0,1,2,2,3,0,4,2}
+		count := leet.RemoveElement(nums, val)
+		expectedCount := 0
+		assert.Equal(t, expected, nums)
+		assert.Equal(t, expectedCount, count )
+	})
+}

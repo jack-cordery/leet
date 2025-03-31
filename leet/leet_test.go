@@ -457,3 +457,35 @@ func TestRemoveDuplicates(t *testing.T) {
 		assert.Equal(t, uniqueCount, actual)
 	})
 }
+
+func TestRemoveDuplicates2(t *testing.T) {
+	t.Run("base case", func (t *testing.T)  {
+		in := []int{1, 2, 2}
+		uniqueCount := 3
+		expected := []int{1,2,2}
+
+		actual := leet.RemoveDuplicates2(in)
+		assert.Equal(t, expected, in)
+		assert.Equal(t, uniqueCount, actual)
+	})
+
+	t.Run("base case 2", func (t *testing.T)  {
+		in := []int{0,0,1,1,1,2,2,3,3,4}
+		uniqueCount := 9
+		expected := []int{0,0,1,1,2,2,3,3,4,4}
+
+		actual := leet.RemoveDuplicates2(in)
+		assert.Equal(t, expected, in)
+		assert.Equal(t, uniqueCount, actual)
+	})
+
+	t.Run("null case", func (t *testing.T)  {
+		in := []int{0}
+		uniqueCount := 1
+		expected := []int{0}
+
+		actual := leet.RemoveDuplicates2(in)
+		assert.Equal(t, expected, in)
+		assert.Equal(t, uniqueCount, actual)
+	})
+}

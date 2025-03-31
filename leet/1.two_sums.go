@@ -842,3 +842,25 @@ func RemoveDuplicates(nums []int) int {
     }
     return count
 }
+
+func RemoveDuplicates2(nums []int) int {
+    // remove duplicates in places, preserving rest of the order, and retyurning the count of unique elements 
+    count := 0
+    duplicates := make(map[int]int)
+    for i, tracker := 0, 0; i < len(nums); i++ {
+        // Given its in order we just need to check the previous value is the same
+        current := nums[i]
+        if c, ok := duplicates[current]; c < 2 || i == 0 {
+            // its unique so replace value and move tracker
+            nums[tracker] = current
+            if ok {
+                duplicates[current]++
+            } else {
+                duplicates[current] = 1
+            }
+            tracker++
+            count++
+        }
+    }
+    return count
+}

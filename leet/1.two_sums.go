@@ -825,3 +825,20 @@ func RemoveElement(nums []int, val int) int {
     } 
     return count
 }
+
+func RemoveDuplicates(nums []int) int {
+    // remove duplicates in places, preserving rest of the order, and retyurning the count of unique elements 
+    count := 0
+    for i, tracker, prev := 0, 0, 0; i < len(nums); i++ {
+        // Given its in order we just need to check the previous value is the same
+        current := nums[i]
+        if current != prev || i == 0 {
+            // its unique so replace value and move tracker 
+            nums[tracker] = current
+            prev = current
+            tracker++
+            count++
+        }
+    }
+    return count
+}

@@ -864,3 +864,20 @@ func RemoveDuplicates2(nums []int) int {
     }
     return count
 }
+
+func MajorityElement(nums []int) int {
+    count := make(map[int]int)
+    for i:=0; i < len(nums); i++ {
+        count[nums[i]]++
+    }
+
+    maxElement := 0
+    maxCount := 0
+    for num, c := range count {
+        if c > maxCount {
+            maxElement = num
+            maxCount = c
+        }
+    }
+    return maxElement
+}

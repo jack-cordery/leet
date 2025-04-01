@@ -489,3 +489,17 @@ func TestRemoveDuplicates2(t *testing.T) {
 		assert.Equal(t, uniqueCount, actual)
 	})
 }
+
+func TestMajorityElement(t *testing.T) {
+	t.Run("base case", func (t *testing.T)  {
+		in := []int{3,2,3}
+		expected := 3
+		assert.Equal(t, expected, leet.MajorityElement(in))
+	})
+
+	t.Run("base case 2", func (t *testing.T)  {
+		in := []int{2,2,1,1,1,2,2}
+		expected := 2
+		assert.Equal(t, expected, leet.MajorityElement(in))
+	})
+}

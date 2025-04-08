@@ -553,3 +553,17 @@ func TestRotateArray(t *testing.T) {
 		assert.Equal(t, expected, in)
 	})
 }
+
+func TestMaxProfit(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		in := []int{7,1,5,3,6,4}
+		expected := 5
+		assert.Equal(t, expected, leet.MaxProfit(in))
+	})
+
+	t.Run("base case 2", func(t *testing.T) {
+		in := []int{7,6,4,3,1}
+		expected := 0
+		assert.Equal(t, expected, leet.MaxProfit(in))
+	})
+}

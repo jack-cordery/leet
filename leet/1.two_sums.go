@@ -950,3 +950,22 @@ func RotateArray(nums []int, k int) {
         }
     } 
 }   // We need to do swaps for each of the pair
+
+
+func MaxProfit(prices []int) int {
+    // Return the largest delta between sequential numbers i.e. [1,2,3,0,5,6,7] => 7
+    maxDelta := 0
+    min := prices[0]
+    for i:=1; i < len(prices); i++ {
+        p := prices[i]
+        if p < min {
+            min = p
+        } else {
+            delta := p - min
+            if delta > maxDelta {
+                maxDelta = delta
+            }
+        }
+    }
+    return maxDelta
+}

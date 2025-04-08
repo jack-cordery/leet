@@ -881,3 +881,72 @@ func MajorityElement(nums []int) int {
     }
     return maxElement
 }
+
+func RotateArray(nums []int, k int) {
+    // rotate array to the right by k steps where k >= 0 
+    // It means move everything along the line. 
+    // Needs to be done in place - which makes it slightly interesting
+    // Imagine the array is a circle. It means make the starting postion 3 to the right
+    // Think you can do it with some sort of mod  
+    // Input: nums = [1,2,3,4,5,6,7], k = 3
+    // Output: [5,6,7,1,2,3,4]
+    // [n-k, n-k+1, n-k+2, 0, 1, 2, 3] until n-k+j = len(nums)
+    // [4,5,6,0,1,2,3]
+    // [i + 1 + 3 mod(7)] -> [4, 5, 6, 0, 1,2,3]
+    // if k = 4
+    // [i + 1 + (l - k ) mod (l)]
+    // k = 3 
+    // [i+1 + 4  mod(l)]
+    // [4 - k mod(l)]
+    // [ i + (l-k) mod(l)]
+    // k = 3 -> [i + (4) mod(l)]
+    // [4, 5, 6, 0, 1 , 2 ,3]
+    // k = 4 -> [i + 3 mod(l)]
+    // [3,4,5,6,7,0,1,2]
+    // Now just need to figure out the order to update so that i dont overwrite
+    l := len(nums)
+    if k == 0 {
+        return
+    }
+    // fmt.Println("divisibility of ",k, l, " is ", (l % k) == 0, l / k == 2 )
+    // if  (l % k) == 0 && l / k == 2 { 
+    //     // if even swap paris 
+    //     fmt.Println("even case")
+    //     for i:= 0; i < l/2; i++ {
+    //         dummy:= nums[(i + k) % l]
+    //         fmt.Println("dummy set to: ", dummy)
+    //         nums[(i + k) % l] = nums[i]
+    //         fmt.Println("pos: ", (i +k) % l, "set to ", nums[(i+k)%l])
+    //         nums[i] = dummy
+    //         fmt.Println("pos: ", i, "set to ", nums[i])
+    //     }
+    //     return
+    // }
+   // Is it divisible?
+       // We need to do swaps for each of the pairs
+    aa, mm := k, l
+    for mm != 0 {
+        aa, mm = mm, aa%mm
+    }
+    g := aa // gcd(a, m)
+
+	// Compute result
+	cycleLength := l / g
+    
+    numCycles := l / cycleLength
+    fmt.Println("divisible cycleLength: ", cycleLength, "numCycles: ", numCycles)
+    for i:=0; i < numCycles; i++ {
+        prev:= nums[(i) % l]
+        fmt.Println("prev set to: ", prev)
+        for j:=0; j< cycleLength; j++ {
+            fmt.Println("i: ", i, "j: ", j)
+            dummy := nums[(i + (j+1) * k) % l]
+            fmt.Println("dummy set to: ", dummy)
+            nums[(i + (j+1) * k) % l] = prev
+            fmt.Println("pos: ", (i + (j+1) * k) % l, "set to ", nums[(i + (j+1) * k) % l])
+
+            prev = dummy
+            fmt.Println("prev set to: ", prev)
+        }
+    } 
+}   // We need to do swaps for each of the pair

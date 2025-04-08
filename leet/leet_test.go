@@ -503,3 +503,53 @@ func TestMajorityElement(t *testing.T) {
 		assert.Equal(t, expected, leet.MajorityElement(in))
 	})
 }
+
+func TestRotateArray(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		in := []int{1,2,3,4,5,6,7}
+		k := 3
+		expected := []int{5,6,7,1,2,3,4}
+		leet.RotateArray(in, k)
+		assert.Equal(t, expected, in)
+	})
+
+	t.Run("base case 2", func(t *testing.T) {
+		in := []int{1,2,3,4,5,6,7}
+		k := 4
+		expected := []int{4,5,6,7,1,2,3}
+		leet.RotateArray(in, k)
+		assert.Equal(t, expected, in)
+	})
+
+	t.Run("base case k > l", func(t *testing.T) {
+		in := []int{1,2,3,4,5,6,7}
+		k := 10
+		expected := []int{5,6,7,1,2,3,4}
+		leet.RotateArray(in, k)
+		assert.Equal(t, expected, in)
+	})
+
+	t.Run("base case divisble by 2", func(t *testing.T) {
+		in := []int{-1,-100,3,99}
+		k := 2
+		expected := []int{3,99,-1,-100}
+		leet.RotateArray(in, k)
+		assert.Equal(t, expected, in)
+	})
+
+	t.Run("failed case", func(t *testing.T) {
+		in := []int{-1,2,3,4,5,6}
+		k := 2
+		expected := []int{5,6,-1,2,3,4}
+		leet.RotateArray(in, k)
+		assert.Equal(t, expected, in)
+	})
+	
+	t.Run("failed case 2", func(t *testing.T) {
+		in := []int{1,2,3,4,5,6}
+		k := 4
+		expected := []int{3,4,5,6,1,2}
+		leet.RotateArray(in, k)
+		assert.Equal(t, expected, in)
+	})
+}

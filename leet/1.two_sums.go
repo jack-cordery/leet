@@ -969,3 +969,16 @@ func MaxProfit(prices []int) int {
     }
     return maxDelta
 }
+
+func MaxProfit2(prices []int) int {
+    maxProfit := 0 
+    for i:=0; i < len(prices) - 1; i++ {
+        curr := prices[i]
+        next := prices[i+1]
+
+        if next > curr {
+            maxProfit += next - curr
+        }
+    }
+    return maxProfit
+}

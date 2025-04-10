@@ -982,3 +982,22 @@ func MaxProfit2(prices []int) int {
     }
     return maxProfit
 }
+
+func CanJump(nums []int) bool {
+    // loop through sotring the max value. When we get to a zero if ifs not big enough to get passt then false, otherwise true 
+    maxJump := 0 
+    for i:=0; i < len(nums) - 1; i++  {
+        if nums[i] == 0 {
+            if maxJump <= i {
+                return false
+            }
+        } else {
+            currJump := nums[i] + i
+            if currJump > maxJump {
+                maxJump = currJump 
+        }
+        }
+        
+    }
+    return true
+}

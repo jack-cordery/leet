@@ -587,3 +587,26 @@ func TestMaxProfit2(t *testing.T) {
 		assert.Equal(t, expected, leet.MaxProfit2(in))
 	})
 }
+
+func TestCanJump(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		in:= []int{2,3,1,1,4}
+		expected := true
+		
+		assert.Equal(t, expected, leet.CanJump(in))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		in:= []int{3,2,1,0,4}
+		expected := false
+		
+		assert.Equal(t, expected, leet.CanJump(in))
+	})
+
+	t.Run("failed case", func(t *testing.T) {
+		in:= []int{2,5,0,0}
+		expected := true
+		
+		assert.Equal(t, expected, leet.CanJump(in))
+	})
+}

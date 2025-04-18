@@ -610,3 +610,72 @@ func TestCanJump(t *testing.T) {
 		assert.Equal(t, expected, leet.CanJump(in))
 	})
 }
+
+func TestCanConstruct(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		inMag := "abb"
+		inNote := "ab"
+		expected := true
+
+		assert.Equal(t, expected, leet.CanConstruct(inNote, inMag))
+	})
+
+	t.Run("base case - fail", func(t *testing.T) {
+		inMag := "aa"
+		inNote := "ab"
+		expected := false
+
+		assert.Equal(t, expected, leet.CanConstruct(inNote, inMag))
+	})
+
+	t.Run("base case - fail - 2", func(t *testing.T) {
+		inMag := "aab"
+		inNote := "abc"
+		expected := false
+
+		assert.Equal(t, expected, leet.CanConstruct(inNote, inMag))
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		inMag := ""
+		inNote := "abc"
+		expected := false
+
+		assert.Equal(t, expected, leet.CanConstruct(inNote, inMag))
+	})
+
+	t.Run("null case 2", func(t *testing.T) {
+		inMag := "abc"
+		inNote := ""
+		expected := true
+
+		assert.Equal(t, expected, leet.CanConstruct(inNote, inMag))
+	})
+
+	
+
+}
+
+func TestIsIsomorphic(t *testing.T) {
+	t.Run("base case", func (t *testing.T)  {
+		s := "egg"
+		u := "add"
+		expected := true
+		assert.Equal(t, expected, leet.IsIsomorphic(s, u))
+		assert.Equal(t, expected, leet.IsIsomorphic(u, s))
+	})
+
+	t.Run("null case", func(t *testing.T)  {
+		s, u := "foo", "bar"
+		expected := false 
+		assert.Equal(t, expected, leet.IsIsomorphic(s, u))
+		assert.Equal(t, expected, leet.IsIsomorphic(u, s))
+	})
+
+	t.Run("additional case", func(t *testing.T)  {
+		s, u := "paper", "title"
+		expected := true
+		assert.Equal(t, expected, leet.IsIsomorphic(s, u))
+		assert.Equal(t, expected, leet.IsIsomorphic(u, s))
+	})
+}

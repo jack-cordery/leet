@@ -1001,3 +1001,63 @@ func CanJump(nums []int) bool {
     }
     return true
 }
+
+func CanConstruct(ransomNote, magazine string) bool {
+    // Principle is - given a magazine can you construct the ransomNote you wish 
+    // So do i have all of the characters available from the magazine
+    // Intiial thought is to create a hashmap from magazine char -> numOccurences 
+    // If it turns out that you only need the character once in the magazine then the changes are:
+    // -> then we just remove the decrement in the second loop
+    // then iterate through ransomeNote checking for existing map value and then decrementing the count in the map
+    // Perfomance questions would center around if i could add in some performance gains for edge cases
+    // For example first checking if ransomNote < magazine
+    // IF magazine >>> ransomeNote. Would it be better to just search magazine directly without conversion 
+    // to hashmap 
+    magMap := make(map[rune]int)
+    for _, r := range magazine {
+        magMap[r]++
+    }
+    fmt.Printf("mag map is %v", magMap)
+    for _, r := range ransomNote {
+        if countR, ok := magMap[r]; countR < 1 || !ok {
+            fmt.Printf("Issue found character %s not in magMap %v", string(r), magMap)
+            return false
+        }
+        magMap[r]-- 
+    }
+    return true
+}
+
+func IsIsomorphic(s, t string) bool {
+    // are they isomorphic i.e. s <=> t
+    // i.e. egg, add as e <-> a, g <-> d
+    // initial thoyghts is to loop through the string and store the map in a hashmap and then if there is already an occurence 
+    // of that value in the key then we return false otherwise we return true
+    // Hashmap  e -> a 
+    // g -> d 
+
+    //  f -> b 
+    // o -> a 
+    // o -> r // fails
+
+    // b -> f 
+    // a -> o 
+    // r -> o // falis 
+    // 
+    
+    // isnt it just a matter of if i have n unique characters on both sides? probably same O(n)
+    m := make(map[byte]byte, len(s))
+    m2 := make(map[byte]byte, len(t))
+    for i := 0; i < len(s); i ++ {
+        currS := s[i]
+        currT := t[i]
+        r, ok:= m[currS];
+        u, ok2 := m2[currT];
+        if ( ok && r != currT ) || ( ok2 && u != currS ){
+            return false
+        }
+        m[currS] = currT
+        m2[currT] = currS
+    } 
+    return true  
+}

@@ -1061,3 +1061,37 @@ func IsIsomorphic(s, t string) bool {
     } 
     return true  
 }
+
+
+// Rewrite!!! 
+func WordPattern(pattern, s string) bool {
+    currWord := ""
+    patternToWord := make(map[byte]string)
+    wordToPattern := make(map[string]byte)
+    patternTracker := 0
+    maxP := len([]byte(pattern))
+    for _, sChar := range s + " " {
+        if patternTracker >= maxP {
+            return false
+        }
+        if sChar == ' ' {
+            w, wOk := patternToWord[pattern[patternTracker]] 
+            p, pOk := wordToPattern[currWord]
+
+            if wOk && w != currWord || pOk && p != pattern[patternTracker] {
+                return false
+            }
+
+            patternToWord[pattern[patternTracker]] = currWord
+            wordToPattern[currWord] = pattern[patternTracker]
+
+        
+            currWord = ""
+            patternTracker++ 
+        } else {
+            currWord += string(sChar)
+        }
+    } 
+    fmt.Println(patternTracker, maxP)
+    return patternTracker == maxP
+}

@@ -679,3 +679,38 @@ func TestIsIsomorphic(t *testing.T) {
 		assert.Equal(t, expected, leet.IsIsomorphic(u, s))
 	})
 }
+
+func TestWordPattern(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.WordPattern("abba", "dog cat cat dog"))
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("abba", "dog cat cat fish"))
+	})
+
+	t.Run("null case 2", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("aaaa", "dog cat cat dog"))
+	})
+
+	t.Run("null case 3", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("abba", "dog dog dog dog"))
+	})
+
+	t.Run("null case 5", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("aba", "dog dog dog cat"))
+	})
+
+	t.Run("null case 6", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("abc", "dog cat dog"))
+	})
+
+	t.Run("null case 7", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("aaa", "aa aa aa aa"))
+	})
+	
+	t.Run("null case 7", func(t *testing.T) {
+		assert.Equal(t, false, leet.WordPattern("jquery", "jquery"))
+	})
+	
+}

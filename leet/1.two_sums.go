@@ -1063,7 +1063,6 @@ func IsIsomorphic(s, t string) bool {
 }
 
 
-// Rewrite!!! 
 func WordPattern(pattern, s string) bool {
     currWord := ""
     patternToWord := make(map[byte]string)

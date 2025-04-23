@@ -714,3 +714,13 @@ func TestWordPattern(t *testing.T) {
 	})
 	
 }
+
+func TestIsAnagram(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.IsAnagram("anagram", "nagaram"))
+	})
+
+	t.Run("base case 2", func(t *testing.T) {
+		assert.Equal(t, false, leet.IsAnagram("rat", "car"))
+	})
+}

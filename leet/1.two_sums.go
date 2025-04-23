@@ -3,6 +3,7 @@ package leet
 import (
 	"fmt"
 	"log"
+	"maps"
 	"math"
 	"strconv"
 )
@@ -1093,4 +1094,20 @@ func WordPattern(pattern, s string) bool {
     } 
     fmt.Println(patternTracker, maxP)
     return patternTracker == maxP
+}
+
+func IsAnagram(s, t string) bool {
+    // is t an anagram of s 
+    // every letter of s is used exactly once in t
+    // there should be a map such that i have index_s -> index_t 
+    // fail if that isnt the case  
+    tMap := make(map[rune]int)
+    sMap := make(map[rune]int)
+    for _, c := range t {
+        tMap[c]++
+    }
+    for _, c := range s {
+        sMap[c]++
+    }
+    return maps.Equal(sMap, tMap)
 }

@@ -8,25 +8,24 @@ import (
 )
 
 func TestTwoSum(t *testing.T) {
-	nums := []int{2,7,11,15}
-	target := 9 
+	nums := []int{2, 7, 11, 15}
+	target := 9
 
 	actual := leet.TwoSum(nums, target)
 
-	assert.Equal(t, []int{1,0}, actual )
+	assert.Equal(t, []int{1, 0}, actual)
 }
 
 func TestTwoSum2(t *testing.T) {
 	nums := []int{0, 4, 3, 0}
-	target := 0 
+	target := 0
 
-	actual :=leet.TwoSum(nums, target)
+	actual := leet.TwoSum(nums, target)
 
-	assert.Equal(t, []int{3,0}, actual )
+	assert.Equal(t, []int{3, 0}, actual)
 }
 
-
-func TestAddTwoNumbers( t *testing.T) {
+func TestAddTwoNumbers(t *testing.T) {
 	l1 := leet.ListNode{Val: 5, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 4}}}
 	l2 := leet.ListNode{Val: 4, Next: &leet.ListNode{Val: 0, Next: &leet.ListNode{Val: 1}}}
 
@@ -46,9 +45,9 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 }
 
 func TestFindMedianSortedArrays(t *testing.T) {
-    t.Run("Different length arrays", func(t *testing.T) {
-		a := []int{ 3}
-		b := []int{ -2, -1}
+	t.Run("Different length arrays", func(t *testing.T) {
+		a := []int{3}
+		b := []int{-2, -1}
 
 		expect := float64(-1)
 
@@ -57,7 +56,7 @@ func TestFindMedianSortedArrays(t *testing.T) {
 }
 
 func TestLongestPalindrome(t *testing.T) {
-    t.Run("standard", func(t *testing.T) {
+	t.Run("standard", func(t *testing.T) {
 		s := "babad"
 
 		expect := "bab"
@@ -83,11 +82,11 @@ func TestLongestPalindrome(t *testing.T) {
 }
 
 func TestZigZagConvert(t *testing.T) {
-    t.Run("Different length arrays", func(t *testing.T) {
+	t.Run("Different length arrays", func(t *testing.T) {
 		s := "AB"
 		n := 1
 
-		expect :=  "AB"
+		expect := "AB"
 
 		assert.Equal(t, expect, leet.ZigZagConvert(s, n))
 	})
@@ -111,14 +110,13 @@ func TestIsPalindrome(t *testing.T) {
 	})
 }
 
-
 func TestMaxArea(t *testing.T) {
 	t.Run("Base case", func(t *testing.T) {
-		assert.Equal(t, 49, leet.MaxAreaPointers([]int{1,8,6,2,5,4,8,3,7}))
+		assert.Equal(t, 49, leet.MaxAreaPointers([]int{1, 8, 6, 2, 5, 4, 8, 3, 7}))
 	})
 }
 
-func TestIntegerToRoman(t *testing.T) { 
+func TestIntegerToRoman(t *testing.T) {
 	t.Run("Base backward", func(t *testing.T) {
 		assert.Equal(t, leet.IntegerToRoman(4), "IV")
 	})
@@ -146,62 +144,61 @@ func TestIntegerToRoman(t *testing.T) {
 
 func TestRomanToInteger(t *testing.T) {
 	// I want to test VI, IV, X, MCX
-	t.Run("Sixes", func( t *testing.T) {
+	t.Run("Sixes", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("VI"), 6)
 	})
 
-	t.Run("4", func( t *testing.T) {
+	t.Run("4", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("IV"), 4)
 	})
 
-	t.Run("Large", func( t *testing.T) {
+	t.Run("Large", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("MMCXI"), 2111)
 	})
 
-	t.Run("THREEE", func( t *testing.T) {
+	t.Run("THREEE", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("III"), 3)
 	})
 
-	t.Run("TEN", func( t *testing.T) {
+	t.Run("TEN", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("X"), 10)
 	})
 
-	t.Run("LV ", func( t *testing.T) {
+	t.Run("LV ", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("LVIII"), 58)
 	})
 
-	t.Run("Larger", func( t *testing.T) {
+	t.Run("Larger", func(t *testing.T) {
 		assert.Equal(t, leet.RomanToInteger("MCMXCIV"), 1994)
 	})
 
 }
 
 func TestLongestCommonPrefix(t *testing.T) {
-	t.Run("No case", func(t *testing.T)  {
+	t.Run("No case", func(t *testing.T) {
 		assert.Equal(t, "", leet.LongestCommonPrefix([]string{"abc", "bcd"}))
 	})
 
-	t.Run("One", func(t *testing.T)  {
+	t.Run("One", func(t *testing.T) {
 		assert.Equal(t, "a", leet.LongestCommonPrefix([]string{"abc", "acd"}))
 	})
 
-	t.Run("Many", func(t *testing.T)  {
+	t.Run("Many", func(t *testing.T) {
 		assert.Equal(t, "abc", leet.LongestCommonPrefix([]string{"abc", "abc"}))
 	})
 
-	t.Run("Leet1", func(t *testing.T)  {
+	t.Run("Leet1", func(t *testing.T) {
 		assert.Equal(t, "fl", leet.LongestCommonPrefix([]string{"flower", "flow", "flight"}))
 	})
 
-	t.Run("Leet2", func(t *testing.T)  {
-		assert.Equal(t, "", leet.LongestCommonPrefix([]string{"dog","racecar","car"}))
+	t.Run("Leet2", func(t *testing.T) {
+		assert.Equal(t, "", leet.LongestCommonPrefix([]string{"dog", "racecar", "car"}))
 	})
 
-	t.Run("Empty", func(t *testing.T)  {
+	t.Run("Empty", func(t *testing.T) {
 		assert.Equal(t, "", leet.LongestCommonPrefix([]string{""}))
 	})
 }
-
 
 // func TestThreeSum(t *testing.T) {
 // 	t.Run("No case", func(t *testing.T)  {
@@ -210,7 +207,7 @@ func TestLongestCommonPrefix(t *testing.T) {
 // 	})
 // }
 
-func TestIsValid( t *testing.T) {
+func TestIsValid(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
 		assert.Equal(t, true, leet.IsValid("()"))
 	})
@@ -223,7 +220,6 @@ func TestIsValid( t *testing.T) {
 		assert.Equal(t, true, leet.IsValid("([])"))
 	})
 
-
 	t.Run("Unclosed", func(t *testing.T) {
 		assert.Equal(t, false, leet.IsValid("(]"))
 	})
@@ -231,7 +227,6 @@ func TestIsValid( t *testing.T) {
 	t.Run("No opener", func(t *testing.T) {
 		assert.Equal(t, false, leet.IsValid("]"))
 	})
-
 
 }
 
@@ -245,13 +240,13 @@ func TestThreeSum(t *testing.T) {
 	})
 
 	t.Run("Multiple Zeroes", func(t *testing.T) {
-		assert.Equal(t, [][]int{{-1, 0, 1}, {-1, 2, -1}, {0, 1, -1}}, leet.ThreeSum([]int{-1, 0, 1, 2 , -1, -4}))
+		assert.Equal(t, [][]int{{-1, 0, 1}, {-1, 2, -1}, {0, 1, -1}}, leet.ThreeSum([]int{-1, 0, 1, 2, -1, -4}))
 	})
 }
 
 func TestLetterCombinations(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		assert.Equal(t, []string{"ad","ae","af","bd","be","bf","cd","ce","cf"}, leet.LetterCombinations("23"))
+		assert.Equal(t, []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"}, leet.LetterCombinations("23"))
 	})
 
 	t.Run("null case", func(t *testing.T) {
@@ -269,19 +264,19 @@ func TestLetterCombinations(t *testing.T) {
 
 func TestRemoveNthFromEnd(t *testing.T) {
 
-	t.Run("base case", func (t *testing.T)  {
-		assert.Equal(t, &leet.ListNode{Val: 1} ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, 1))
-	}) 
-	t.Run("base case 2", func (t *testing.T)  {
-		assert.Equal(t, &leet.ListNode{Val: 2} ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, 2))
-	}) 
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{Val: 1}, leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, 1))
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{Val: 2}, leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, 2))
+	})
 
-	t.Run("base case long", func (t *testing.T)  {
-		assert.Equal(t, &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 3, Next: &leet.ListNode{Val: 5}}}} ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 3, Next: &leet.ListNode{Val: 4, Next: &leet.ListNode{Val: 5}}}}}, 2))
-	}) 
+	t.Run("base case long", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 3, Next: &leet.ListNode{Val: 5}}}}, leet.RemoveNthFromEnd(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2, Next: &leet.ListNode{Val: 3, Next: &leet.ListNode{Val: 4, Next: &leet.ListNode{Val: 5}}}}}, 2))
+	})
 	// t.Run("single", func (t *testing.T)  {
 	// 	assert.Equal(t, nil ,leet.RemoveNthFromEnd(&leet.ListNode{Val: 1}, 1))
-	// }) 
+	// })
 }
 
 func TestGenerateParentheses(t *testing.T) {
@@ -290,25 +285,25 @@ func TestGenerateParentheses(t *testing.T) {
 	})
 
 	t.Run("n=2", func(t *testing.T) {
-		assert.Equal(t, []string{ "(())", "()()"}, leet.GenerateParantheses(2))
+		assert.Equal(t, []string{"(())", "()()"}, leet.GenerateParantheses(2))
 	})
 
 	t.Run("n=3", func(t *testing.T) {
-		assert.Equal(t, []string{"((()))","(()())","(())()","()(())","()()()"}, leet.GenerateParantheses(3))
+		assert.Equal(t, []string{"((()))", "(()())", "(())()", "()(())", "()()()"}, leet.GenerateParantheses(3))
 	})
 }
 
 func TestSwapPairs(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{Val:1}}, leet.SwapPairs(&leet.ListNode{1, &leet.ListNode{Val:2}}))
+		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{Val: 1}}, leet.SwapPairs(&leet.ListNode{1, &leet.ListNode{Val: 2}}))
 	})
 
 	t.Run("base case - odd", func(t *testing.T) {
-		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val:1}}}, leet.SwapPairs( &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}))
+		assert.Equal(t, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val: 1}}}, leet.SwapPairs(&leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val: 1}}}))
 	})
 
 	t.Run("base case 1234", func(t *testing.T) {
-		assert.Equal(t, &leet.ListNode{4, &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}}, leet.SwapPairs(&leet.ListNode{1, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val:4}}}}))
+		assert.Equal(t, &leet.ListNode{4, &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val: 1}}}}, leet.SwapPairs(&leet.ListNode{1, &leet.ListNode{2, &leet.ListNode{3, &leet.ListNode{Val: 4}}}}))
 	})
 }
 
@@ -333,16 +328,15 @@ func TestSwapPairs(t *testing.T) {
 // 		assert.Equal(t, &leet.ListNode{1, &leet.ListNode{2, &leet.ListNode{Val:3}}}, leet.ReverseKGroup( &leet.ListNode{3, &leet.ListNode{2, &leet.ListNode{Val:1}}}, 3))
 // 	})
 
-
 // }
 
 func TestMergeSortedArray(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		nums1 := []int{1,2,3,0,0,0}
-		nums2 := []int{2,5,6}
-		m, n := 3, 3 
-		expected := []int{1,2,2,3,5,6}
-		
+		nums1 := []int{1, 2, 3, 0, 0, 0}
+		nums2 := []int{2, 5, 6}
+		m, n := 3, 3
+		expected := []int{1, 2, 2, 3, 5, 6}
+
 		leet.MergeSortedArray(nums1, nums2, m, n)
 
 		assert.Equal(t, expected, nums1)
@@ -358,7 +352,7 @@ func TestMergeSortedArray(t *testing.T) {
 
 		assert.Equal(t, expected, nums1)
 	})
-	
+
 	t.Run("null case 2", func(t *testing.T) {
 		nums1 := []int{}
 		nums2 := []int{}
@@ -383,7 +377,7 @@ func TestMergeSortedArray(t *testing.T) {
 
 	t.Run("interesting", func(t *testing.T) {
 		nums1 := []int{-1, 0, 0, 3, 3, 3, 0, 0, 0}
-		nums2 := []int{1,2,2}
+		nums2 := []int{1, 2, 2}
 		m, n := 6, 3
 		expected := []int{-1, 0, 0, 1, 2, 2, 3, 3, 3}
 
@@ -394,60 +388,59 @@ func TestMergeSortedArray(t *testing.T) {
 
 }
 
-
 func TestRemoveElement(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		nums := []int{3,2,2,3}
+		nums := []int{3, 2, 2, 3}
 		val := 3
-		expected := []int{2,2,2,3}
+		expected := []int{2, 2, 2, 3}
 		count := leet.RemoveElement(nums, val)
 		expectedCount := 2
 		assert.Equal(t, expected, nums)
-		assert.Equal(t, expectedCount, count )
+		assert.Equal(t, expectedCount, count)
 	})
 
 	t.Run("base case 2", func(t *testing.T) {
-		nums := []int{0,1,2,2,3,0,4,2}
+		nums := []int{0, 1, 2, 2, 3, 0, 4, 2}
 		val := 2
-		expected := []int{0,1,3,0,4,0,4,2}
+		expected := []int{0, 1, 3, 0, 4, 0, 4, 2}
 		count := leet.RemoveElement(nums, val)
 		expectedCount := 3
 		assert.Equal(t, expected, nums)
-		assert.Equal(t, expectedCount, count )
+		assert.Equal(t, expectedCount, count)
 	})
 	t.Run("null case", func(t *testing.T) {
-		nums := []int{0,1,2,2,3,0,4,2}
+		nums := []int{0, 1, 2, 2, 3, 0, 4, 2}
 		val := 5
-		expected := []int{0,1,2,2,3,0,4,2}
+		expected := []int{0, 1, 2, 2, 3, 0, 4, 2}
 		count := leet.RemoveElement(nums, val)
 		expectedCount := 0
 		assert.Equal(t, expected, nums)
-		assert.Equal(t, expectedCount, count )
+		assert.Equal(t, expectedCount, count)
 	})
 }
 
 func TestRemoveDuplicates(t *testing.T) {
-	t.Run("base case", func (t *testing.T)  {
+	t.Run("base case", func(t *testing.T) {
 		in := []int{1, 2, 2}
 		uniqueCount := 2
-		expected := []int{1,2,2}
+		expected := []int{1, 2, 2}
 
 		actual := leet.RemoveDuplicates(in)
 		assert.Equal(t, expected, in)
 		assert.Equal(t, uniqueCount, actual)
 	})
 
-	t.Run("base case 2", func (t *testing.T)  {
-		in := []int{0,0,1,1,1,2,2,3,3,4}
+	t.Run("base case 2", func(t *testing.T) {
+		in := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
 		uniqueCount := 5
-		expected := []int{0,1,2,3,4,2,2,3,3,4}
+		expected := []int{0, 1, 2, 3, 4, 2, 2, 3, 3, 4}
 
 		actual := leet.RemoveDuplicates(in)
 		assert.Equal(t, expected, in)
 		assert.Equal(t, uniqueCount, actual)
 	})
 
-	t.Run("null case", func (t *testing.T)  {
+	t.Run("null case", func(t *testing.T) {
 		in := []int{0}
 		uniqueCount := 1
 		expected := []int{0}
@@ -459,27 +452,27 @@ func TestRemoveDuplicates(t *testing.T) {
 }
 
 func TestRemoveDuplicates2(t *testing.T) {
-	t.Run("base case", func (t *testing.T)  {
+	t.Run("base case", func(t *testing.T) {
 		in := []int{1, 2, 2}
 		uniqueCount := 3
-		expected := []int{1,2,2}
+		expected := []int{1, 2, 2}
 
 		actual := leet.RemoveDuplicates2(in)
 		assert.Equal(t, expected, in)
 		assert.Equal(t, uniqueCount, actual)
 	})
 
-	t.Run("base case 2", func (t *testing.T)  {
-		in := []int{0,0,1,1,1,2,2,3,3,4}
+	t.Run("base case 2", func(t *testing.T) {
+		in := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
 		uniqueCount := 9
-		expected := []int{0,0,1,1,2,2,3,3,4,4}
+		expected := []int{0, 0, 1, 1, 2, 2, 3, 3, 4, 4}
 
 		actual := leet.RemoveDuplicates2(in)
 		assert.Equal(t, expected, in)
 		assert.Equal(t, uniqueCount, actual)
 	})
 
-	t.Run("null case", func (t *testing.T)  {
+	t.Run("null case", func(t *testing.T) {
 		in := []int{0}
 		uniqueCount := 1
 		expected := []int{0}
@@ -491,14 +484,14 @@ func TestRemoveDuplicates2(t *testing.T) {
 }
 
 func TestMajorityElement(t *testing.T) {
-	t.Run("base case", func (t *testing.T)  {
-		in := []int{3,2,3}
+	t.Run("base case", func(t *testing.T) {
+		in := []int{3, 2, 3}
 		expected := 3
 		assert.Equal(t, expected, leet.MajorityElement(in))
 	})
 
-	t.Run("base case 2", func (t *testing.T)  {
-		in := []int{2,2,1,1,1,2,2}
+	t.Run("base case 2", func(t *testing.T) {
+		in := []int{2, 2, 1, 1, 1, 2, 2}
 		expected := 2
 		assert.Equal(t, expected, leet.MajorityElement(in))
 	})
@@ -506,49 +499,49 @@ func TestMajorityElement(t *testing.T) {
 
 func TestRotateArray(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		in := []int{1,2,3,4,5,6,7}
+		in := []int{1, 2, 3, 4, 5, 6, 7}
 		k := 3
-		expected := []int{5,6,7,1,2,3,4}
+		expected := []int{5, 6, 7, 1, 2, 3, 4}
 		leet.RotateArray(in, k)
 		assert.Equal(t, expected, in)
 	})
 
 	t.Run("base case 2", func(t *testing.T) {
-		in := []int{1,2,3,4,5,6,7}
+		in := []int{1, 2, 3, 4, 5, 6, 7}
 		k := 4
-		expected := []int{4,5,6,7,1,2,3}
+		expected := []int{4, 5, 6, 7, 1, 2, 3}
 		leet.RotateArray(in, k)
 		assert.Equal(t, expected, in)
 	})
 
 	t.Run("base case k > l", func(t *testing.T) {
-		in := []int{1,2,3,4,5,6,7}
+		in := []int{1, 2, 3, 4, 5, 6, 7}
 		k := 10
-		expected := []int{5,6,7,1,2,3,4}
+		expected := []int{5, 6, 7, 1, 2, 3, 4}
 		leet.RotateArray(in, k)
 		assert.Equal(t, expected, in)
 	})
 
 	t.Run("base case divisble by 2", func(t *testing.T) {
-		in := []int{-1,-100,3,99}
+		in := []int{-1, -100, 3, 99}
 		k := 2
-		expected := []int{3,99,-1,-100}
+		expected := []int{3, 99, -1, -100}
 		leet.RotateArray(in, k)
 		assert.Equal(t, expected, in)
 	})
 
 	t.Run("failed case", func(t *testing.T) {
-		in := []int{-1,2,3,4,5,6}
+		in := []int{-1, 2, 3, 4, 5, 6}
 		k := 2
-		expected := []int{5,6,-1,2,3,4}
+		expected := []int{5, 6, -1, 2, 3, 4}
 		leet.RotateArray(in, k)
 		assert.Equal(t, expected, in)
 	})
-	
+
 	t.Run("failed case 2", func(t *testing.T) {
-		in := []int{1,2,3,4,5,6}
+		in := []int{1, 2, 3, 4, 5, 6}
 		k := 4
-		expected := []int{3,4,5,6,1,2}
+		expected := []int{3, 4, 5, 6, 1, 2}
 		leet.RotateArray(in, k)
 		assert.Equal(t, expected, in)
 	})
@@ -556,13 +549,13 @@ func TestRotateArray(t *testing.T) {
 
 func TestMaxProfit(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		in := []int{7,1,5,3,6,4}
+		in := []int{7, 1, 5, 3, 6, 4}
 		expected := 5
 		assert.Equal(t, expected, leet.MaxProfit(in))
 	})
 
 	t.Run("base case 2", func(t *testing.T) {
-		in := []int{7,6,4,3,1}
+		in := []int{7, 6, 4, 3, 1}
 		expected := 0
 		assert.Equal(t, expected, leet.MaxProfit(in))
 	})
@@ -570,19 +563,19 @@ func TestMaxProfit(t *testing.T) {
 
 func TestMaxProfit2(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		in := []int{7,1,5,3,6,4}
+		in := []int{7, 1, 5, 3, 6, 4}
 		expected := 7
 		assert.Equal(t, expected, leet.MaxProfit2(in))
 	})
 
 	t.Run("base case 1.5", func(t *testing.T) {
-		in := []int{1,2,3,4,5}
+		in := []int{1, 2, 3, 4, 5}
 		expected := 4
 		assert.Equal(t, expected, leet.MaxProfit2(in))
 	})
 
 	t.Run("base case 2", func(t *testing.T) {
-		in := []int{7,6,4,3,1}
+		in := []int{7, 6, 4, 3, 1}
 		expected := 0
 		assert.Equal(t, expected, leet.MaxProfit2(in))
 	})
@@ -590,23 +583,23 @@ func TestMaxProfit2(t *testing.T) {
 
 func TestCanJump(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
-		in:= []int{2,3,1,1,4}
+		in := []int{2, 3, 1, 1, 4}
 		expected := true
-		
+
 		assert.Equal(t, expected, leet.CanJump(in))
 	})
 
 	t.Run("base case", func(t *testing.T) {
-		in:= []int{3,2,1,0,4}
+		in := []int{3, 2, 1, 0, 4}
 		expected := false
-		
+
 		assert.Equal(t, expected, leet.CanJump(in))
 	})
 
 	t.Run("failed case", func(t *testing.T) {
-		in:= []int{2,5,0,0}
+		in := []int{2, 5, 0, 0}
 		expected := true
-		
+
 		assert.Equal(t, expected, leet.CanJump(in))
 	})
 }
@@ -652,12 +645,10 @@ func TestCanConstruct(t *testing.T) {
 		assert.Equal(t, expected, leet.CanConstruct(inNote, inMag))
 	})
 
-	
-
 }
 
 func TestIsIsomorphic(t *testing.T) {
-	t.Run("base case", func (t *testing.T)  {
+	t.Run("base case", func(t *testing.T) {
 		s := "egg"
 		u := "add"
 		expected := true
@@ -665,14 +656,14 @@ func TestIsIsomorphic(t *testing.T) {
 		assert.Equal(t, expected, leet.IsIsomorphic(u, s))
 	})
 
-	t.Run("null case", func(t *testing.T)  {
+	t.Run("null case", func(t *testing.T) {
 		s, u := "foo", "bar"
-		expected := false 
+		expected := false
 		assert.Equal(t, expected, leet.IsIsomorphic(s, u))
 		assert.Equal(t, expected, leet.IsIsomorphic(u, s))
 	})
 
-	t.Run("additional case", func(t *testing.T)  {
+	t.Run("additional case", func(t *testing.T) {
 		s, u := "paper", "title"
 		expected := true
 		assert.Equal(t, expected, leet.IsIsomorphic(s, u))
@@ -708,11 +699,11 @@ func TestWordPattern(t *testing.T) {
 	t.Run("null case 7", func(t *testing.T) {
 		assert.Equal(t, false, leet.WordPattern("aaa", "aa aa aa aa"))
 	})
-	
+
 	t.Run("null case 7", func(t *testing.T) {
 		assert.Equal(t, false, leet.WordPattern("jquery", "jquery"))
 	})
-	
+
 }
 
 func TestIsAnagram(t *testing.T) {
@@ -722,5 +713,29 @@ func TestIsAnagram(t *testing.T) {
 
 	t.Run("base case 2", func(t *testing.T) {
 		assert.Equal(t, false, leet.IsAnagram("rat", "car"))
+	})
+}
+
+func TestGroupAnagrams(t *testing.T) {
+	t.Run("base case 2", func(t *testing.T) {
+		assert.Equal(t, [][]string{{"cat", "tac"}, {"dog"}}, leet.GroupAnagrams([]string{"cat", "tac", "dog"}))
+	})
+}
+
+func TestHappyNumber(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.HappyNumber(19))
+	})
+
+	t.Run("second case", func(t *testing.T) {
+		assert.Equal(t, false, leet.HappyNumber(2))
+	})
+
+	t.Run("third case", func(t *testing.T) {
+		assert.Equal(t, true, leet.HappyNumber(1))
+	})
+
+	t.Run("failed case", func(t *testing.T) {
+		assert.Equal(t, true, leet.HappyNumber(7))
 	})
 }

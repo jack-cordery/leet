@@ -1135,3 +1135,18 @@ func HappyNumber(n int) bool {
 	}
 }
 
+func ContainsDuplicate(nums []int, k int) bool {
+	// Actually its. Given an array are there two indentical values that are within k positions
+	// Intial idea is to have a map that maps value to position.
+	// Then we can check that map and calculate the delta and if in bound return true
+	posMap := make(map[int]int)
+	for i, v := range nums {
+		m, ok := posMap[v]
+		if delta := i - m; ok && delta <= k {
+			return true
+		}
+		posMap[v] = i
+		fmt.Printf("v: %v is updated with %v\n", v, i)
+	}
+	return false
+}

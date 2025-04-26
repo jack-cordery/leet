@@ -739,3 +739,17 @@ func TestHappyNumber(t *testing.T) {
 		assert.Equal(t, true, leet.HappyNumber(7))
 	})
 }
+
+func TestContainsDuplicate(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.ContainsDuplicate([]int{1, 2, 3, 1}, 3))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.ContainsDuplicate([]int{1, 0, 1, 1}, 1))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, false, leet.ContainsDuplicate([]int{1, 2, 3, 1, 2, 3}, 2))
+	})
+}

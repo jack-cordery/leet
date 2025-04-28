@@ -753,3 +753,17 @@ func TestContainsDuplicate(t *testing.T) {
 		assert.Equal(t, false, leet.ContainsDuplicate([]int{1, 2, 3, 1, 2, 3}, 2))
 	})
 }
+
+func TestPlusOne(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, []int{2, 0}, leet.PlusOne([]int{1, 9}))
+	})
+
+	t.Run("base case 2", func(t *testing.T) {
+		assert.Equal(t, []int{1, 0, 0}, leet.PlusOne([]int{9, 9}))
+	})
+
+	t.Run("base case 3", func(t *testing.T) {
+		assert.Equal(t, []int{1, 1}, leet.PlusOne([]int{1, 0}))
+	})
+}

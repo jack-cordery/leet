@@ -1150,3 +1150,25 @@ func ContainsDuplicate(nums []int, k int) bool {
 	}
 	return false
 }
+
+func PlusOne(digits []int) []int {
+	r := 1
+	result := digits
+	dTracker := len(digits) - 1
+	for r > 0 {
+		result[dTracker] += r
+		if result[dTracker] > 9 {
+			result[dTracker] = 0
+			if dTracker == 0 {
+				result = append([]int{0}, result...)
+			} else {
+				dTracker--
+			}
+			r = 1
+		} else {
+			r = 0
+			dTracker--
+		}
+	}
+	return result
+}

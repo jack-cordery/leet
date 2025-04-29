@@ -767,3 +767,29 @@ func TestPlusOne(t *testing.T) {
 		assert.Equal(t, []int{1, 1}, leet.PlusOne([]int{1, 0}))
 	})
 }
+
+func TestMySqrt(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 2, leet.MySqrt(4))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 1, leet.MySqrt(1))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 5, leet.MySqrt(27))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 2, leet.MySqrt(8))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 0, leet.MySqrt(0))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 1, leet.MySqrt(2))
+	})
+}

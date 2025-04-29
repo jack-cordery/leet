@@ -1172,3 +1172,30 @@ func PlusOne(digits []int) []int {
 	}
 	return result
 }
+
+func MySqrt(x int) int {
+	// TODO: Can be cleaned up to reduce control logic complexity. For example can add check in for statement
+	if x <= 1 {
+		return x
+	}
+	yUpper := x
+	yLower := 0
+	for {
+		d := (yUpper - yLower) / 2
+		m := yLower + d
+		if d == 0 {
+			fmt.Println("delta is zero yUpper yLower m", yUpper, yLower, m)
+			return m
+		}
+		fmt.Println("for x ", x, "we have yUppper yLower d m ", yUpper, yLower, d, m)
+		if m*m < x {
+			fmt.Println("LESS m m*m x", m, m*m, x)
+			yLower = m
+		} else if m*m > x {
+			fmt.Println("MORE m m*m x", m, m*m, x)
+			yUpper = m
+		} else {
+			return m
+		}
+	}
+}

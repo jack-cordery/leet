@@ -25,6 +25,12 @@ type ListNode struct {
 	Next *ListNode
 }
 
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 // List node represents an actual integer i.e. 425, except they are reversed and structures
 //ListNode(Val: 5, Next: ListNode(Val: 2, Next: ListNode(Val: 4, Next: nil)))
 //ListNode(Val: 5, Next: ListNode(Val: 2, Next: ListNode(Val: 4, Next: nil)))
@@ -1198,4 +1204,12 @@ func MySqrt(x int) int {
 			return m
 		}
 	}
+}
+
+func MaxDepth(root *TreeNode) int {
+	// Given a binary tree find the maxDepth of it, i.e. how many steps can i take before hitting nil tree
+	if root == nil {
+		return 0
+	}
+	return 1 + max(MaxDepth(root.Left), MaxDepth(root.Right))
 }

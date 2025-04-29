@@ -793,3 +793,16 @@ func TestMySqrt(t *testing.T) {
 		assert.Equal(t, 1, leet.MySqrt(2))
 	})
 }
+
+func TestMaxDepth(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		tree := leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 0}}
+		assert.Equal(t, 2, leet.MaxDepth(&tree))
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		tree := leet.TreeNode{Val: 1}
+		assert.Equal(t, 1, leet.MaxDepth(&tree))
+	})
+
+}

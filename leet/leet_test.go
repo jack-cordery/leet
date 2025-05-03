@@ -806,3 +806,60 @@ func TestMaxDepth(t *testing.T) {
 	})
 
 }
+
+func TestLengthOfLastWord(t *testing.T) {
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 5, leet.LegnthOfLastWord("Hello World"))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 4, leet.LegnthOfLastWord("  fly to me    to the moon     "))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 6, leet.LegnthOfLastWord("joyboy"))
+	})
+}
+
+//
+// func TestSearchInsert(t *testing.T) {
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, 2, leet.SearchInsert([]int{1, 3, 5, 6}, 5))
+// 	})
+//
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, 3, leet.SearchInsert([]int{1, 3, 4, 6}, 5))
+// 	})
+//
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, 4, leet.SearchInsert([]int{1, 3, 5, 6}, 7))
+// 	})
+//
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, 1, leet.SearchInsert([]int{1, 3, 5, 6}, 2))
+// 	})
+//
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, 0, leet.SearchInsert([]int{}, 7))
+// 	})
+//
+// 	t.Run("base case", func(t *testing.T) {
+// 		assert.Equal(t, 1, leet.SearchInsert([]int{1, 3}, 2))
+// 	})
+// }
+
+func TestLinkedListCycle(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		n := leet.ListNode{Val: 1}
+		m := leet.ListNode{Val: 2}
+		n.Next = &m
+		m.Next = &n
+		assert.Equal(t, true, leet.LinkedListCycle(&n))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		n := leet.ListNode{Val: 1}
+		assert.Equal(t, false, leet.LinkedListCycle(&n))
+	})
+}

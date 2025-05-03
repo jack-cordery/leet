@@ -1213,3 +1213,58 @@ func MaxDepth(root *TreeNode) int {
 	}
 	return 1 + max(MaxDepth(root.Left), MaxDepth(root.Right))
 }
+
+func LegnthOfLastWord(s string) int {
+	// find the position of the last whitespace and the second last whitespace
+	e := len(s) - 1
+	for s[e] == ' ' {
+		e--
+	}
+	b := e
+	for (b >= 0) && (s[b] != ' ') {
+		b--
+	}
+	return e - b
+
+}
+
+func SearchInsert(nums []int, target int) int {
+	// Use binary search to find the index where target would be or is
+	// general idea is to go through the array using bin search
+	// if i find target then return that index otherwise ensure we land on the
+	// index it would be - think it will be more obvious when we do it
+	// TODO: fix for edge case [1, 3], 2 <- currently returns 0 instead of 1 as it returns iLower
+	l := len(nums)
+	iUpper := l
+	iLower := 0
+	r := 0
+	for delta := 0; delta <= 0; {
+		delta = iUpper - iLower
+		m := iLower + (delta / 2)
+		if nums[m] == target {
+			return m
+		} else if nums[m] < target {
+			// look at uppper half
+			iLower = m + 1
+			r = iUpper
+		} else {
+			// look at lower half
+			iUpper = m - 1
+			r = iLower
+		}
+	}
+	return r
+}
+
+func LinkedListCycle(head *ListNode) bool {
+	slow := head
+	fast := head
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+		if fast == slow {
+			return true
+		}
+	}
+	return false
+}

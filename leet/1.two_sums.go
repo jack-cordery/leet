@@ -1214,6 +1214,37 @@ func MaxDepth(root *TreeNode) int {
 	return 1 + max(MaxDepth(root.Left), MaxDepth(root.Right))
 }
 
+func IterativeDFSMaxDepth(root *TreeNode) int {
+	return 1
+}
+
+func IterativeBFSMaxDepth(root *TreeNode) int {
+	/// fill a queue replacing eleements with its children
+	// until there is nothing in queue. Somehow keep track of level
+	if root == nil {
+		return 0
+	}
+	q := []*TreeNode{root}
+	levels := 0
+	for len(q) > 0 {
+		l := len(q)
+		for range l {
+			// this is a level/ Go through the whole queue
+			n := q[0]
+			q = q[1:]
+			if n.Left != nil {
+				q = append(q, n.Left)
+			}
+			if n.Right != nil {
+				q = append(q, n.Right)
+			}
+		}
+
+		levels++
+	}
+	return levels
+}
+
 func LegnthOfLastWord(s string) int {
 	// find the position of the last whitespace and the second last whitespace
 	e := len(s) - 1
@@ -1267,4 +1298,18 @@ func LinkedListCycle(head *ListNode) bool {
 		}
 	}
 	return false
+}
+
+func DeleteDuplicates(head *ListNode) *ListNode {
+	// given a sorted linked list, delete all duplicates and return sorted
+	// immediate thought is to just check if next is equal and only set next if not equal
+	copy := head
+	for head != nil && head.Next != nil {
+		for head.Val == head.Next.Val && head.Next.Next != nil {
+			println(head.Val, head.Next.Val)
+			head.Next = head.Next.Next
+		}
+		head = head.Next
+	}
+	return copy
 }

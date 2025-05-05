@@ -797,12 +797,17 @@ func TestMySqrt(t *testing.T) {
 func TestMaxDepth(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
 		tree := leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 0}}
-		assert.Equal(t, 2, leet.MaxDepth(&tree))
+		assert.Equal(t, 2, leet.IterativeBFSMaxDepth(&tree))
 	})
 
 	t.Run("null case", func(t *testing.T) {
 		tree := leet.TreeNode{Val: 1}
-		assert.Equal(t, 1, leet.MaxDepth(&tree))
+		assert.Equal(t, 1, leet.IterativeBFSMaxDepth(&tree))
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		tree := leet.TreeNode{}
+		assert.Equal(t, 1, leet.IterativeBFSMaxDepth(&tree))
 	})
 
 }
@@ -861,5 +866,11 @@ func TestLinkedListCycle(t *testing.T) {
 	t.Run("base case", func(t *testing.T) {
 		n := leet.ListNode{Val: 1}
 		assert.Equal(t, false, leet.LinkedListCycle(&n))
+	})
+}
+
+func TestDeleteDuplicates(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, leet.DeleteDuplicates(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}}))
 	})
 }

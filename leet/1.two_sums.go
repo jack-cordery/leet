@@ -1215,7 +1215,33 @@ func MaxDepth(root *TreeNode) int {
 }
 
 func IterativeDFSMaxDepth(root *TreeNode) int {
-	return 1
+	// ok so we are going to use a stack and add children and cross off
+	// need to think of a wayt to track the depth, sure it will become obvious when we create iteration
+	// stack is lifo.  Again go until the stack is empty
+	stack := []struct {
+		pos   *TreeNode
+		depth int
+	}{{root, 1}}
+	maxDepth := 0
+	for len(stack) > 0 {
+		curr := stack[0]
+		if curr.pos.Left != nil {
+			stack = append(stack, struct {
+				pos   *TreeNode
+				depth int
+			}{curr.pos.Left, curr.depth + 1})
+		}
+		if curr.pos.Right != nil {
+			stack = append(stack, struct {
+				pos   *TreeNode
+				depth int
+			}{curr.pos.Right, curr.depth + 1})
+		}
+
+		maxDepth = max(maxDepth, curr.depth)
+		stack = stack[1:]
+	}
+	return maxDepth
 }
 
 func IterativeBFSMaxDepth(root *TreeNode) int {

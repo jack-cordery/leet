@@ -874,3 +874,16 @@ func TestDeleteDuplicates(t *testing.T) {
 		assert.Equal(t, &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}, leet.DeleteDuplicates(&leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 1, Next: &leet.ListNode{Val: 2}}}))
 	})
 }
+
+func TestInvertBinaryTree(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 3}, Right: &leet.TreeNode{Val: 2}}, leet.InvertBinaryTree(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}))
+	})
+}
+
+func TestCountNodes(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+
+		assert.Equal(t, 3, leet.CountNodes(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}))
+	})
+}

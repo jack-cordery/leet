@@ -1339,3 +1339,67 @@ func DeleteDuplicates(head *ListNode) *ListNode {
 	}
 	return copy
 }
+
+func InvertBinaryTree(root *TreeNode) *TreeNode {
+	// invert in this case means flip left to right
+	// so swap left and right
+	// Can try both iteratively and recurisevly
+	if root == nil {
+		return root
+	}
+	q := []*TreeNode{root}
+	for len(q) > 0 {
+		curr := q[0]
+		q = q[1:]
+		curr.Right, curr.Left = curr.Left, curr.Right
+
+		if curr.Left != nil {
+			q = append(q, curr.Left)
+		}
+		if curr.Right != nil {
+			q = append(q, curr.Right)
+		}
+
+	}
+	return root
+}
+
+func CountNodes(root *TreeNode) int {
+	// so this counts the number of nodes but we are also told that the tree is complete
+	// sucht that if you consider the tree from the top left there are no empty vals
+	// i think that means it is most efficient to do BFS and then just
+	// count the number of levels and the number of nodes in last level
+	// and retrun Sum_i{2^i} + a . where i is number of full rows and a number in last
+	// assume that the summation has a numeric formula 2^i+1 - 1j
+
+	if root == nil {
+		return 0
+	}
+	q := []*TreeNode{root}
+	nFullLevels := 0
+
+	for len(q) > 0 {
+		l := len(q)
+		if l < (1 << nFullLevels) {
+			// reached the first not full level
+			// there are nFullLevels
+			// and l leaves
+			return (1 << (nFullLevels)) - 1 + l
+		}
+		for range l {
+			curr := q[0]
+			q = q[1:]
+			if curr.Left != nil {
+				q = append(q, curr.Left)
+			}
+			if curr.Right != nil {
+				q = append(q, curr.Right)
+			}
+		}
+		nFullLevels++
+
+	}
+	// they are all full levels
+	fmt.Println("n full levels found", nFullLevels)
+	return (1 << (nFullLevels)) - 1
+}

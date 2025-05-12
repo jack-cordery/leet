@@ -1403,3 +1403,61 @@ func CountNodes(root *TreeNode) int {
 	fmt.Println("n full levels found", nFullLevels)
 	return (1 << (nFullLevels)) - 1
 }
+
+func GetMinimumDifference(root *TreeNode) int {
+	// minimum abs diff between the vals of any two different nodes of the tree
+	// essentially find the abs diff between the two closest nodes
+	// brute force would be traverse tree, and then sort and return closest diff over aray
+	// sure there is a way to calculate whilst traversering tree whilst tracking smth
+	minDelta := math.MaxInt64
+	if root == nil {
+		return 0
+	}
+	stack := []*TreeNode{root}
+	prevVal := -1
+out:
+	for len(stack) > 0 {
+
+		// ok so we are going to while left
+		// then when left is nil we pop and use
+		// then we pop while there is no right
+		curr := stack[0]
+		for curr.Left != nil {
+			stack = append([]*TreeNode{curr.Left}, stack...)
+			curr = curr.Left
+		}
+		for curr.Right == nil {
+			fmt.Println("pop! ", curr.Val)
+			if prevVal >= 0 {
+				d := prevVal - curr.Val
+				if d < 0 {
+					d *= -1
+				}
+				minDelta = min(minDelta, d)
+
+			}
+			prevVal = curr.Val
+			stack = stack[1:]
+			if len(stack) > 0 {
+				curr = stack[0]
+			} else {
+				break out
+			}
+		}
+		fmt.Println("pop parent! ", curr.Val)
+		if prevVal >= 0 {
+			d := prevVal - curr.Val
+			if d < 0 {
+				d *= -1
+			}
+			minDelta = min(minDelta, d)
+		}
+		prevVal = curr.Val
+		stack = stack[1:]
+		if curr.Right != nil {
+			stack = append([]*TreeNode{curr.Right}, stack...)
+		}
+
+	}
+	return minDelta
+}

@@ -887,3 +887,12 @@ func TestCountNodes(t *testing.T) {
 		assert.Equal(t, 3, leet.CountNodes(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}))
 	})
 }
+
+func TestGetMinimumDifference(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 1, leet.GetMinimumDifference(&leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 1}, Right: &leet.TreeNode{Val: 3}}))
+	})
+	t.Run("base case - fail", func(t *testing.T) {
+		assert.Equal(t, 2, leet.GetMinimumDifference(&leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 5, Right: &leet.TreeNode{Val: 7}}}))
+	})
+}

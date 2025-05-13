@@ -1435,3 +1435,27 @@ func GetMinimumDifference(root *TreeNode) int {
 	}
 	return minDelta
 }
+
+func KthSmallest(root *TreeNode, k int) int {
+	// in this BST find the kth smallest (1-indexed) node
+	// feels pretty easy. Just do In order traversal and count pops
+	stack := []*TreeNode{}
+	curr := root
+	count := 1
+	for len(stack) > 0 || curr != nil {
+		for curr != nil {
+			stack = append([]*TreeNode{curr}, stack...)
+			curr = curr.Left
+		}
+		curr = stack[0]
+		stack = stack[1:]
+		if count == k {
+			return curr.Val
+		}
+		count++
+		if curr != nil {
+			curr = curr.Right
+		}
+	}
+	return -1
+}

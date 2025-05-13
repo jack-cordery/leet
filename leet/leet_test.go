@@ -896,3 +896,17 @@ func TestGetMinimumDifference(t *testing.T) {
 		assert.Equal(t, 2, leet.GetMinimumDifference(&leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 5, Right: &leet.TreeNode{Val: 7}}}))
 	})
 }
+
+func TestKthSmallest(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 1, leet.KthSmallest(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}, 1))
+
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		assert.Equal(t, 2, leet.KthSmallest(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}, 2))
+	})
+	t.Run("base case 3", func(t *testing.T) {
+
+		assert.Equal(t, 3, leet.KthSmallest(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}, 3))
+	})
+}

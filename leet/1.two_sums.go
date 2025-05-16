@@ -1459,3 +1459,31 @@ func KthSmallest(root *TreeNode, k int) int {
 	}
 	return -1
 }
+
+func AverageOfLevels(root *TreeNode) []float32 {
+
+	// so we want to be able to go through each level (BFS) and average the numbers
+	// will use iteration so we will want a queue and then just add levels to the queue and then
+	// average as we pop them
+	queue := []*TreeNode{root}
+	res := []float32{}
+	for len(queue) > 0 {
+		// everything in the queue is a level so pop it and its children
+		l := len(queue)
+		sum := float32(0.0)
+		for range l {
+			pop := queue[0]
+			queue = queue[1:]
+			if pop.Left != nil {
+				queue = append(queue, pop.Left)
+			}
+			if pop.Right != nil {
+				queue = append(queue, pop.Right)
+			}
+			sum += float32(pop.Val)
+		}
+		res = append(res, sum/float32(l))
+		fmt.Println("queue ", queue)
+	}
+	return res
+}

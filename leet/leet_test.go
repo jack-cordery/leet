@@ -910,3 +910,16 @@ func TestKthSmallest(t *testing.T) {
 		assert.Equal(t, 3, leet.KthSmallest(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}, 3))
 	})
 }
+
+func TestAverageLevels(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		expected := []float32{3.0, 2.5, 2.0}
+		assert.Equal(t, expected, leet.AverageOfLevels(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}))
+
+	})
+	t.Run("anotehr one", func(t *testing.T) {
+
+		expected := []float32{1.0, 2.5}
+		assert.Equal(t, expected, leet.AverageOfLevels(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}))
+	})
+}

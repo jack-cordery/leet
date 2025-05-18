@@ -1487,3 +1487,30 @@ func AverageOfLevels(root *TreeNode) []float32 {
 	}
 	return res
 }
+
+func IsValidBST(root *TreeNode) bool {
+	// determine whether the tree is a valid BST
+	// strictly less to the left and strictly greater to the right
+	// thought is to implement in order traversal and then just check
+	// whether they are in order i..e store prev int and check next int is bigger
+	// Node vals can be negative so just need to account for that in the init of prev
+	// we want to loop through the left pop at nil and then add right if its there
+	stack := []*TreeNode{}
+	curr := root
+	prev := math.MinInt64
+	for len(stack) > 0 || curr != nil {
+		for curr != nil {
+			stack = append([]*TreeNode{curr}, stack...)
+			curr = curr.Left
+		}
+		curr = stack[0]
+
+		if curr.Val <= prev {
+			return false
+		}
+		prev = curr.Val
+		stack = stack[1:]
+		curr = curr.Right
+	}
+	return true
+}

@@ -923,3 +923,17 @@ func TestAverageLevels(t *testing.T) {
 		assert.Equal(t, expected, leet.AverageOfLevels(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}))
 	})
 }
+
+func TestIsValidBST(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, true, leet.IsValidBST(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 8}}))
+
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		assert.Equal(t, true, leet.IsValidBST(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}))
+	})
+	t.Run("base case 3", func(t *testing.T) {
+
+		assert.Equal(t, false, leet.IsValidBST(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 6, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}))
+	})
+}

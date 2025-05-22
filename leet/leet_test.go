@@ -937,3 +937,50 @@ func TestIsValidBST(t *testing.T) {
 		assert.Equal(t, false, leet.IsValidBST(&leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 6, Right: &leet.TreeNode{Val: 2}}, Right: &leet.TreeNode{Val: 4}}))
 	})
 }
+
+func TestRotateListRight(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		in := leet.LinkedList{}.FromVec([]int{1, 2, 3, 4})
+		out := leet.RotateListRight(in.Head, 1)
+		// outLL := leet.LinkedList{Head: out}
+		// outLL.Print()
+		expected := leet.LinkedList{}.FromVec([]int{4, 1, 2, 3})
+		assert.Equal(t, expected.Head, out)
+	})
+
+	t.Run("base case 2", func(t *testing.T) {
+		in := leet.LinkedList{}.FromVec([]int{1, 2, 3, 4})
+		out := leet.RotateListRight(in.Head, 2)
+		// outLL := leet.LinkedList{Head: out}
+		// outLL.Print()
+		expected := leet.LinkedList{}.FromVec([]int{3, 4, 1, 2})
+		assert.Equal(t, expected.Head, out)
+	})
+
+	t.Run("base case 3", func(t *testing.T) {
+		in := leet.LinkedList{}.FromVec([]int{1, 2, 3, 4})
+		out := leet.RotateListRight(in.Head, 3)
+		// outLL := leet.LinkedList{Head: out}
+		// outLL.Print()
+		expected := leet.LinkedList{}.FromVec([]int{2, 3, 4, 1})
+		assert.Equal(t, expected.Head, out)
+	})
+
+	t.Run("base case 5", func(t *testing.T) {
+		in := leet.LinkedList{}.FromVec([]int{1, 2, 3, 4})
+		out := leet.RotateListRight(in.Head, 4)
+		// outLL := leet.LinkedList{Head: out}
+		// outLL.Print()
+		expected := leet.LinkedList{}.FromVec([]int{1, 2, 3, 4})
+		assert.Equal(t, expected.Head, out)
+	})
+
+	t.Run("failed case ", func(t *testing.T) {
+		in := leet.LinkedList{}.FromVec([]int{0, 1, 2})
+		out := leet.RotateListRight(in.Head, 4)
+		// outL := leet.LinkedList{Head: out}
+		// outLL.Print()
+		expected := leet.LinkedList{}.FromVec([]int{2, 0, 1})
+		assert.Equal(t, expected.Head, out)
+	})
+}

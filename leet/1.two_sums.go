@@ -1536,7 +1536,7 @@ func RotateListRight(head *ListNode, k int) *ListNode {
 	}
 
 	curr := head
-	kBuffer := make([]*ListNode, k+1)
+	kBuffer := make([]*ListNode, min(k+1, 500)) // need to account for very large ks as reqs state numNodes <= 500 but k can be 10^9
 	index := 0
 	count := 0
 	for curr != nil {

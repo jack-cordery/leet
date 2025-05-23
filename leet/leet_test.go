@@ -983,4 +983,5 @@ func TestRotateListRight(t *testing.T) {
 		expected := leet.LinkedList{}.FromVec([]int{2, 0, 1})
 		assert.Equal(t, expected.Head, out)
 	})
+
 }

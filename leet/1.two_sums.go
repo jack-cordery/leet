@@ -1520,6 +1520,13 @@ func RotateListRight(head *ListNode, k int) *ListNode {
 	// go to then end of the list and set Next to the original head
 	// We dont know how long the list is ahead of time so actually we are going to have to have
 	// a buffer that stores the last k values so when we hit the end we can then reference that Node
+	if k == 0 {
+		return head
+	}
+	if head == nil || head.Next == nil {
+		return head
+	}
+
 	mod := func(a int, b int) int {
 		tmp := a % b
 		if tmp < 0 {
@@ -1534,45 +1541,26 @@ func RotateListRight(head *ListNode, k int) *ListNode {
 	count := 0
 	for curr != nil {
 		kBuffer[index] = curr
-		fmt.Println(kBuffer)
 		if curr.Next == nil {
-			// We have reached then end and the last value is in kbuffer at position index
-			// the kth ListNode is therefore at position index + 2 and its parent is at index + 1
-			// TODO: Need to think about if k is greater than the lenfth of the Linked list
 			if k > count {
 				k = k % (count + 1)
 				if k == 0 {
 					return head
 				}
-				//TODO: Can probably slice kBuffer to account for k > LL
-				// so once i loop through i have a kBuffer that is the
-				// whole ll long but actually i would just want the last
-				// (new) k items. Because we have gone through in order all
-				// the way and not had to reset index its actually the last
-				// k + 1 values (because i also want the parent)
-				// the last value of our kBuffer when looped trhough will be
-				// nil as we have a k+1 buffer. So i would want from x to the last but one
 				kBuffer = kBuffer[index-(k) : index+1]
 				index = k
-				fmt.Println("new kBuffer is ", kBuffer)
 			}
-			fmt.Println("k is now ", k)
-
-			fmt.Println("End reached")
 			kth := mod(index+2, k+1)
 			parentKth := mod(index+1, k+1)
 			oldEnd := index
 
 			kBuffer[parentKth].Next = nil // set parent of kth node to be the end of the linked list
 			kBuffer[oldEnd].Next = head   // set the old end of list to point at the old head
-			fmt.Printf("parent index %d, old end of list index %d, and new head index %d\n", parentKth, oldEnd, kth)
-
-			return kBuffer[kth] // return the new head which is the old kth position which is at index - 1
+			return kBuffer[kth]           // return the new head which is the old kth position which is at index - 1
 		}
 		index = (index + 1) % (k + 1)
 		count++
 		curr = curr.Next
-		fmt.Println("index ", index)
 	}
 	return nil
 }

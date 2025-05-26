@@ -1564,3 +1564,44 @@ func RotateListRight(head *ListNode, k int) *ListNode {
 	}
 	return nil
 }
+
+func IsSymmetric(root *TreeNode) bool {
+	// find whether the tree is symmetric or not
+	// a tree is symmetric if when using BFS
+	// that each level is smmetric i.e. [1], [2, 2], [3, 4, 4, 3] each array is reversible
+	// [nil, 3, nil, 3] is not
+	// inital thought is that iterative BFS and check  whether the level has
+	// equality when reversing the slice
+	// although it feels like there is probably a recursive way that would be cleaner
+
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		levelLength := len(queue)
+		levelValues := []int{}
+		for range levelLength {
+
+			curr := queue[0]
+			queue = queue[1:]
+			if curr.Left != nil {
+				queue = append(queue, curr.Left)
+				levelValues = append(levelValues, curr.Left.Val)
+			} else {
+				levelValues = append(levelValues, -1000) // This only works because node vals are > -100
+			}
+			if curr.Right != nil {
+				queue = append(queue, curr.Right)
+				levelValues = append(levelValues, curr.Right.Val)
+			} else {
+				levelValues = append(levelValues, -1000) // This only works because node vals are > 0
+			}
+		}
+		// now check that if i reverse the level vals they are the same
+		for i := range len(levelValues) {
+			if levelValues[i] != levelValues[len(levelValues)-(i+1)] {
+				return false
+			}
+		}
+
+	}
+	return true
+}

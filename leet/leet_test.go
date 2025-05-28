@@ -985,3 +985,14 @@ func TestRotateListRight(t *testing.T) {
 	})
 
 }
+
+func TestIsSymmetric(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		in := &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 2}}
+		assert.Equal(t, true, leet.IsSymmetric(in))
+	})
+	t.Run("null case", func(t *testing.T) {
+		in := &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 3}, Right: &leet.TreeNode{Val: 2}}
+		assert.Equal(t, false, leet.IsSymmetric(in))
+	})
+}

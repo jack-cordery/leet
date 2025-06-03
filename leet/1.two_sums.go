@@ -1607,42 +1607,17 @@ func IsSymmetric(root *TreeNode) bool {
 }
 
 func IsSameTree(p *TreeNode, q *TreeNode) bool {
-	// ok so we can really do any tree traversal simultaneously across
-	// both trees and check that each value is the same at the left and right points
-	// it feels like one that should be pretty using recursion and so i wont need to
-	// write the overhead of the call stack or queue
-	// basic plan is to have the root case of when left and right of each is nil to return
-	// true and then have the next step call the same returning p.Left == q.Left and q.Right = p.Right
-	fmt.Println("I have p: ", p, "and q: ", q)
+
+	// base case is when both are nil we return true
+	// if then one is not nil and the other is return false
+	// if then they are both not nil return if they are the same value and recurse
 	if p == nil && q == nil {
 		return true
 	}
 
-	if p == nil && q != nil || q == nil && p != nil {
-		return false
-	}
-	if p.Left == nil && p.Right == nil && q.Left == nil && q.Right == nil {
-		return p.Val == q.Val
-	}
-
-	if p.Left == nil && q.Left != nil || q.Left == nil && p.Left != nil {
+	if p == nil || q == nil {
 		return false
 	}
 
-	if p.Right == nil && q.Right != nil || q.Right == nil && p.Right != nil {
-		return false
-	}
-
-	if p.Left != nil {
-		if p.Left.Val != q.Left.Val {
-			return false
-		}
-	}
-	if p.Right != nil {
-		if p.Right.Val != q.Right.Val {
-			return false
-		}
-	}
-
-	return IsSameTree(p.Left, q.Left) && IsSameTree(p.Right, q.Right)
+	return p.Val == q.Val && IsSameTree(p.Left, q.Left) && IsSameTree(p.Right, q.Right)
 }

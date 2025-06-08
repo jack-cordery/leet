@@ -1621,3 +1621,37 @@ func IsSameTree(p *TreeNode, q *TreeNode) bool {
 
 	return p.Val == q.Val && IsSameTree(p.Left, q.Left) && IsSameTree(p.Right, q.Right)
 }
+
+func RightSideView(root *TreeNode) []int {
+	// given a binary tree return the values of the nodes you would see if you were viewing
+	// the tree from the rhs perspective
+	// my first thought is that for each level of the tree it is the last value
+	// so do a BFS and return the last value when ordering left then right nodes
+	// will do it iteratively which means we need a quueue which we will
+	// add to and then a loop that will assess the current level
+
+	if root == nil {
+		return []int{}
+	}
+	queue := []*TreeNode{root}
+	l := len(queue)
+	output := []int{}
+	for l > 0 {
+		rightVal := 0
+		for _, node := range queue[:l] {
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+			rightVal = node.Val
+		}
+		output = append(output, rightVal)
+		queue = queue[l:]
+		l = len(queue)
+
+	}
+
+	return output
+}

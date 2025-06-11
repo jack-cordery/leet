@@ -1655,3 +1655,39 @@ func RightSideView(root *TreeNode) []int {
 
 	return output
 }
+
+func Flatten(root *TreeNode) {
+	// this should take a root of a tree node and inplace turn it into
+	// a faux linked list such that all of the left child nodes are nil
+	// and the right child nodes are the pointer to the next in the list
+	// the order should follow that of pre-order traversal
+	// Solution: the crux of this will be to implement iterative DFS
+	// in a pre-order way. It will amount to similar to in-order just
+	// placing the items on the stack in the right order.
+	if root == nil {
+		return
+	}
+	stack := []*TreeNode{root}
+	prev := root
+	skip := true
+	for len(stack) > 0 {
+		curr := stack[0]
+		stack = stack[1:]
+		if !skip {
+			prev.Left = nil
+			prev.Right = curr
+		} else {
+			skip = false
+		}
+
+		prev = curr
+		if curr.Right != nil {
+			stack = append([]*TreeNode{curr.Right}, stack...)
+		}
+		if curr.Left != nil {
+			stack = append([]*TreeNode{curr.Left}, stack...)
+		}
+
+	}
+
+}

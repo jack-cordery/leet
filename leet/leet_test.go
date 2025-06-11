@@ -1025,3 +1025,27 @@ func TestRightSideView(t *testing.T) {
 		assert.Equal(t, []int{1, 3, 4}, leet.RightSideView(in))
 	})
 }
+
+func TestFlatten(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		in := &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}
+		leet.Flatten(in)
+		assert.Equal(t, &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2, Right: &leet.TreeNode{Val: 3}}}, in)
+	})
+	t.Run("nil case", func(t *testing.T) {
+		in := &leet.TreeNode{}
+		leet.Flatten(in)
+		assert.Equal(t, in, in)
+	})
+	t.Run("null case", func(t *testing.T) {
+		in := &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 3}, Right: &leet.TreeNode{Val: 2}}
+		leet.Flatten(in)
+		assert.Equal(t, &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 3, Right: &leet.TreeNode{Val: 2}}}, in)
+	})
+	t.Run("full case", func(t *testing.T) {
+		in := &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2, Right: &leet.TreeNode{Val: 5}, Left: &leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 4}}}, Right: &leet.TreeNode{Val: 6, Right: &leet.TreeNode{Val: 7}}}
+		leet.Flatten(in)
+		assert.Equal(t, &leet.TreeNode{Val: 1, Right: &leet.TreeNode{Val: 2, Right: &leet.TreeNode{Val: 3, Right: &leet.TreeNode{Val: 4, Right: &leet.TreeNode{Val: 5, Right: &leet.TreeNode{Val: 6, Right: &leet.TreeNode{Val: 7}}}}}}}, in)
+	})
+
+}

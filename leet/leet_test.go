@@ -1049,3 +1049,30 @@ func TestFlatten(t *testing.T) {
 	})
 
 }
+
+func TestBuildTree(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		actual := leet.BuildTree([]int{3, 9, 20, 15, 7}, []int{9, 3, 15, 20, 7})
+		expected := leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 9}, Right: &leet.TreeNode{Val: 20, Left: &leet.TreeNode{Val: 15}, Right: &leet.TreeNode{Val: 7}}}
+
+		assert.Equal(t, actual, &expected)
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		actual := leet.BuildTree([]int{-1}, []int{-1})
+		expected := leet.TreeNode{Val: -1}
+
+		assert.Equal(t, actual, &expected)
+	})
+	t.Run("nil", func(t *testing.T) {
+		actual := leet.BuildTree([]int{}, []int{})
+		expected := leet.TreeNode{}
+
+		assert.Equal(t, actual, &expected)
+	})
+	t.Run("fail", func(t *testing.T) {
+		actual := leet.BuildTree([]int{1, 2}, []int{2, 1})
+		expected := leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}}
+
+		assert.Equal(t, actual, &expected)
+	})
+}

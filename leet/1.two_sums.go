@@ -1691,3 +1691,101 @@ func Flatten(root *TreeNode) {
 	}
 
 }
+
+func buildTree(ts *TreeStack) (*TreeStack, *TreeStack) {
+
+	if len(ts.inorder) < 2 {
+		return &TreeStack{}, &TreeStack{}
+	}
+
+	rootVal := ts.preorder[0]
+	var leftInorder, rightInorder []int
+	leftValMap := make(map[int]bool)
+	rightValMap := make(map[int]bool)
+
+	// i need to split the inorder array around the rootVal as this will give me the left and right subtrees
+	// this is O(n) where n is the number of nodes in the tree
+	rootFlag := false
+	for _, i := range ts.inorder {
+		if !rootFlag && i != rootVal {
+			leftInorder = append(leftInorder, i)
+			leftValMap[i] = true
+		} else {
+			rootFlag = true
+			if i != rootVal {
+				rightInorder = append(rightInorder, i)
+				rightValMap[i] = true
+			}
+		}
+	}
+
+	var leftPreorder, rightPreorder []int
+	for _, i := range ts.preorder {
+		if leftValMap[i] {
+			leftPreorder = append(leftPreorder, i)
+		} else if rightValMap[i] {
+			rightPreorder = append(rightPreorder, i)
+		}
+	}
+
+	leftNode := TreeNode{}
+	if len(leftPreorder) > 0 {
+		leftNode.Val = leftPreorder[0]
+		ts.node.Left = &leftNode
+	}
+	rightNode := TreeNode{}
+	if len(rightPreorder) > 0 {
+		rightNode.Val = rightPreorder[0]
+		ts.node.Right = &rightNode
+	}
+
+	leftTreeStack := TreeStack{&leftNode, leftPreorder, leftInorder}
+	rightTreeStack := TreeStack{&rightNode, rightPreorder, rightInorder}
+
+	return &leftTreeStack, &rightTreeStack
+
+}
+
+type TreeStack struct {
+	node     *TreeNode
+	preorder []int
+	inorder  []int
+}
+
+func BuildTree(preorder []int, inorder []int) *TreeNode {
+	// given the two arrays construct the given tree
+	// initilally cant think why one would need both as they on their own define
+	// a unique tree but maybe there is an efficieny im missing
+	// ah yes! nulls dont appear in the orders and so im guessing having the two allows you to unpick that
+	// will need to draw it out
+	// unique values constraint feels like it will be pretty significant
+	// probably that way i can then find the indexes in the two and work the tree struct from there
+
+	// i need to split the inorder array around the rootVal as this will give me the left and right subtrees
+	// this is O(n) where n is the number of nodes in the tree
+	if len(preorder) == 0 {
+		return &TreeNode{}
+	}
+	rootNode := TreeNode{Val: preorder[0]}
+	baseStack := TreeStack{&rootNode, preorder, inorder}
+
+	stack := []*TreeStack{&baseStack}
+
+	for len(stack) > 0 {
+		curr := stack[0]
+
+		leftTreeStack, rightTreeStack := buildTree(curr)
+
+		stack = stack[1:]
+		if len(leftTreeStack.preorder) > 0 {
+			stack = append(stack, leftTreeStack)
+		}
+		if len(rightTreeStack.preorder) > 0 {
+
+			stack = append(stack, rightTreeStack)
+		}
+	}
+
+	return &rootNode
+
+}

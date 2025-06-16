@@ -1792,20 +1792,22 @@ func BuildTree(preorder []int, inorder []int) *TreeNode {
 
 func PreOrder(root *TreeNode) []int {
 	// lets first do pre order as its quite simple
-	queue := []*TreeNode{root}
+	queue := make(chan *TreeNode, 128)
+	queue <- root
 	result := []int{}
 
 	for len(queue) > 0 {
-		curr := queue[0]
-		queue = queue[1:]
+		curr := <-queue
+		fmt.Println("curr is ", curr)
+		fmt.Println("len of queue ", len(queue))
 
 		result = append(result, curr.Val)
 
 		if curr.Left != nil {
-			queue = append(queue, curr.Left)
+			queue <- curr.Left
 		}
 		if curr.Right != nil {
-			queue = append(queue, curr.Right)
+			queue <- curr.Right
 		}
 	}
 	return result

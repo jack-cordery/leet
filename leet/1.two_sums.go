@@ -1789,3 +1789,49 @@ func BuildTree(preorder []int, inorder []int) *TreeNode {
 	return &rootNode
 
 }
+
+func PreOrder(root *TreeNode) []int {
+	// lets first do pre order as its quite simple
+	queue := []*TreeNode{root}
+	result := []int{}
+
+	for len(queue) > 0 {
+		curr := queue[0]
+		queue = queue[1:]
+
+		result = append(result, curr.Val)
+
+		if curr.Left != nil {
+			queue = append(queue, curr.Left)
+		}
+		if curr.Right != nil {
+			queue = append(queue, curr.Right)
+		}
+	}
+	return result
+}
+
+func InOrder(root *TreeNode) []int {
+	stack := []*TreeNode{}
+	result := []int{}
+
+	curr := root
+
+	for curr != nil || len(stack) > 0 {
+		if curr != nil {
+			stack = append([]*TreeNode{curr}, stack...)
+			curr = curr.Left
+		} else {
+			curr = stack[0]
+			stack = stack[1:]
+
+			result = append(result, curr.Val)
+
+			curr = curr.Right
+
+		}
+	}
+
+	return result
+
+}

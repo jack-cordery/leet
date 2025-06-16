@@ -1076,3 +1076,21 @@ func TestBuildTree(t *testing.T) {
 		assert.Equal(t, actual, &expected)
 	})
 }
+
+func TestPreOrder(t *testing.T) {
+	t.Run("only case", func(t *testing.T) {
+		actual := leet.PreOrder(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 4}, Right: &leet.TreeNode{Val: 5}}, Right: &leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 6}}})
+
+		expected := []int{1, 2, 3, 4, 5, 6}
+		assert.Equal(t, expected, actual)
+	})
+}
+
+func TestInOrder(t *testing.T) {
+	t.Run("only case", func(t *testing.T) {
+		actual := leet.InOrder(&leet.TreeNode{Val: 4, Left: &leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 1}, Right: &leet.TreeNode{Val: 3}}, Right: &leet.TreeNode{Val: 6, Left: &leet.TreeNode{Val: 5}}})
+
+		expected := []int{1, 2, 3, 4, 5, 6}
+		assert.Equal(t, expected, actual)
+	})
+}

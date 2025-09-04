@@ -1837,3 +1837,38 @@ func InOrder(root *TreeNode) []int {
 	return result
 
 }
+
+type MinStack struct {
+	Stack []int
+}
+
+func Constructor() MinStack {
+	return MinStack{
+		Stack: []int{},
+	}
+
+}
+
+func (this *MinStack) Push(val int) {
+	this.Stack = append([]int{val}, this.Stack...)
+}
+
+func (this *MinStack) Pop() {
+	this.Stack = this.Stack[1:]
+}
+
+func (this *MinStack) Top() int {
+	return this.Stack[0]
+
+}
+
+func (this *MinStack) Min() int {
+	minVal := math.MaxInt
+	for _, v := range this.Stack {
+		if v < minVal {
+			minVal = v
+		}
+	}
+	return minVal
+
+}

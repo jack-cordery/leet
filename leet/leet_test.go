@@ -1094,3 +1094,43 @@ func TestInOrder(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestMinStack(t *testing.T) {
+	t.Run("constuctor", func(t *testing.T) {
+		expected := []int{}
+		actual := leet.Constructor()
+
+		assert.Equal(t, expected, actual.Stack)
+	})
+
+	t.Run("push", func(t *testing.T) {
+		stack := leet.Constructor()
+		stack.Push(1)
+		assert.Equal(t, []int{1}, stack.Stack)
+		stack.Push(2)
+		assert.Equal(t, []int{2, 1}, stack.Stack)
+	})
+
+	t.Run("pop", func(t *testing.T) {
+		stack := leet.Constructor()
+		stack.Push(1)
+		stack.Push(2)
+		stack.Pop()
+		assert.Equal(t, []int{1}, stack.Stack)
+	})
+
+	t.Run("top", func(t *testing.T) {
+		stack := leet.Constructor()
+		stack.Push(1)
+		stack.Push(2)
+		assert.Equal(t, 2, stack.Top())
+	})
+
+	t.Run("Min", func(t *testing.T) {
+		stack := leet.Constructor()
+		stack.Push(100)
+		stack.Push(2)
+		stack.Push(50)
+		assert.Equal(t, 2, stack.Min())
+	})
+}

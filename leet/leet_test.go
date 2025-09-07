@@ -1108,10 +1108,8 @@ func TestMinStack(t *testing.T) {
 		stack := leet.Constructor()
 		stack.Push(1)
 		assert.Equal(t, []int{1}, stack.Stack)
-		assert.Equal(t, []int{1}, stack.MinVals)
 		stack.Push(2)
 		assert.Equal(t, []int{2, 1}, stack.Stack)
-		assert.Equal(t, []int{1, 2}, stack.MinVals)
 	})
 
 	t.Run("pop", func(t *testing.T) {
@@ -1137,5 +1135,27 @@ func TestMinStack(t *testing.T) {
 		stack.Push(2)
 		stack.Push(50)
 		assert.Equal(t, 2, stack.Min())
+	})
+
+	t.Run("failure - edge case", func(t *testing.T) {
+		stack := leet.Constructor()
+		stack.Push(0)
+		stack.Push(1)
+		stack.Push(0)
+		assert.Equal(t, 0, stack.Min())
+		stack.Pop()
+		assert.Equal(t, 0, stack.Min())
+		stack.Pop()
+		assert.Equal(t, 0, stack.Min())
+		stack.Pop()
+		stack.Push(-2)
+		stack.Push(-1)
+		stack.Push(-2)
+		assert.Equal(t, -2, stack.Min())
+		stack.Pop()
+		assert.Equal(t, -1, stack.Top())
+		assert.Equal(t, -2, stack.Min())
+		stack.Pop()
+		assert.Equal(t, -2, stack.Min())
 	})
 }

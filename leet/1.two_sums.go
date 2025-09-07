@@ -1838,6 +1838,10 @@ func InOrder(root *TreeNode) []int {
 
 }
 
+// TODO: I think you can keep two slices as order matters
+// i.e when
+// as and when i get a new minimum i can just push and pop to that stack
+// as when i pop its always in that order
 type MinStack struct {
 	Stack   []int
 	MinVals []int
@@ -1854,35 +1858,27 @@ func Constructor() MinStack {
 func (this *MinStack) Push(val int) {
 	this.Stack = append([]int{val}, this.Stack...)
 
-	if len(this.MinVals) > 0 {
-		for i, m := range this.MinVals {
-			if val < m {
-				this.MinVals = append(this.MinVals[:i], append([]int{val}, this.MinVals[i:]...)...)
-				break
-			} else {
-				if i == len(this.MinVals)-1 {
-					this.MinVals = append(this.MinVals, val)
-				}
-			}
-		}
-	} else {
+	if len(this.MinVals) == 0 {
 		this.MinVals = []int{val}
+	} else {
+		if val <= this.MinVals[0] {
+			this.MinVals = append([]int{val}, this.MinVals...)
+		}
 	}
+
 }
 
 func (this *MinStack) Pop() {
 	pop := this.Stack[0]
 	this.Stack = this.Stack[1:]
 
-	for i, m := range this.MinVals {
-		if m == pop {
-			if i < len(this.MinVals)-1 {
-				this.MinVals = append(this.MinVals[:i], this.MinVals[i+1:]...)
-			} else {
-				this.MinVals = this.MinVals[:i]
-			}
-		}
+	if len(this.MinVals) == 0 {
+		return
 	}
+	if pop == this.MinVals[0] {
+		this.MinVals = this.MinVals[1:]
+	}
+
 }
 
 func (this *MinStack) Top() int {

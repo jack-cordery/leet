@@ -1101,22 +1101,27 @@ func TestMinStack(t *testing.T) {
 		actual := leet.Constructor()
 
 		assert.Equal(t, expected, actual.Stack)
+		assert.Equal(t, expected, actual.MinVals)
 	})
 
 	t.Run("push", func(t *testing.T) {
 		stack := leet.Constructor()
 		stack.Push(1)
 		assert.Equal(t, []int{1}, stack.Stack)
+		assert.Equal(t, []int{1}, stack.MinVals)
 		stack.Push(2)
 		assert.Equal(t, []int{2, 1}, stack.Stack)
+		assert.Equal(t, []int{1, 2}, stack.MinVals)
 	})
 
 	t.Run("pop", func(t *testing.T) {
 		stack := leet.Constructor()
+		stack.Push(3)
 		stack.Push(1)
 		stack.Push(2)
 		stack.Pop()
-		assert.Equal(t, []int{1}, stack.Stack)
+		assert.Equal(t, []int{1, 3}, stack.Stack)
+		assert.Equal(t, []int{1, 3}, stack.MinVals)
 	})
 
 	t.Run("top", func(t *testing.T) {

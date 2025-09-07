@@ -1876,16 +1876,28 @@ func (this *MinStack) Pop() {
 
 	for i, m := range this.MinVals {
 		if m == pop {
-			this.MinVals = append(this.MinVals[:i], this.MinVals[i+1:]...)
+			if i < len(this.MinVals)-1 {
+				this.MinVals = append(this.MinVals[:i], this.MinVals[i+1:]...)
+			} else {
+				this.MinVals = this.MinVals[:i]
+			}
 		}
 	}
 }
 
 func (this *MinStack) Top() int {
-	return this.Stack[0]
+	if len(this.Stack) > 0 {
+		return this.Stack[0]
+	} else {
+		return 0
+	}
 
 }
 
 func (this *MinStack) Min() int {
-	return this.MinVals[0]
+	if len(this.MinVals) > 0 {
+		return this.MinVals[0]
+	} else {
+		return 0
+	}
 }

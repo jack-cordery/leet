@@ -1923,7 +1923,7 @@ func EvalRPN(input []string) int {
 			stack = append([]int{b / a}, stack[2:]...)
 		default:
 			//operand i.e. numbers get pushed to stack
-			operand, err := strconv.ParseInt(inp, 10, 32)
+			operand, err := strconv.Atoi(inp)
 			if err != nil {
 				return 0
 			}

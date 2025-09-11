@@ -1159,3 +1159,31 @@ func TestMinStack(t *testing.T) {
 		assert.Equal(t, -2, stack.Min())
 	})
 }
+
+func TestEvalRPN(t *testing.T) {
+	t.Run("base", func(t *testing.T) {
+		t.Parallel()
+		input := []string{"2", "1", "+", "3", "*"}
+		expected := 9
+		actual := leet.EvalRPN(input)
+
+		assert.Equal(t, expected, actual)
+	})
+
+	t.Run("base two", func(t *testing.T) {
+		t.Parallel()
+		input := []string{"4", "13", "5", "/", "+"}
+		expected := 6
+		actual := leet.EvalRPN(input)
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base three", func(t *testing.T) {
+		t.Parallel()
+		input := []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
+		expected := 22
+		actual := leet.EvalRPN(input)
+
+		assert.Equal(t, expected, actual)
+	})
+}

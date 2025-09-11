@@ -1897,3 +1897,44 @@ func (this *MinStack) Min() int {
 		return 0
 	}
 }
+
+func EvalRPN(input []string) int {
+	// so this is some weird way to calcultate things, i think
+	// it comes from caclulators.
+	// the input simulates calculator input and we want to provide
+	// the answer
+	// broadly speaking we have numbers that get pushed to a stack
+	// and we have operators that do stuff + - * /
+
+	stack := []int{}
+	for _, inp := range input {
+		switch inp {
+		case "+":
+			a, b := stack[0], stack[1]
+			stack = append([]int{a + b}, stack[2:]...)
+		case "-":
+			a, b := stack[0], stack[1]
+			stack = append([]int{b - a}, stack[2:]...)
+		case "*":
+			a, b := stack[0], stack[1]
+			stack = append([]int{b * a}, stack[2:]...)
+		case "/":
+			a, b := stack[0], stack[1]
+			stack = append([]int{b / a}, stack[2:]...)
+		default:
+			//operand i.e. numbers get pushed to stack
+			operand, err := strconv.ParseInt(inp, 10, 32)
+			if err != nil {
+				return 0
+			}
+			stack = append([]int{int(operand)}, stack...)
+		}
+
+	}
+
+	if len(stack) != 1 {
+		fmt.Printf("warning stack is not of correct length %v", stack)
+	}
+
+	return stack[0]
+}

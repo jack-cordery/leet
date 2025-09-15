@@ -1187,3 +1187,41 @@ func TestEvalRPN(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestBSTIterator(t *testing.T) {
+	t.Run("base", func(t *testing.T) {
+		t.Parallel()
+		bst := leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 1}, Right: &leet.TreeNode{Val: 3}}
+
+		itera := leet.BSTConstruct(&bst)
+
+		assert.Equal(t, 1, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 2, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 3, itera.Next())
+		assert.Equal(t, false, itera.HasNext())
+
+	})
+
+	t.Run("base bigger", func(t *testing.T) {
+		t.Parallel()
+		bst := leet.TreeNode{Val: 4, Left: &leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 1}, Right: &leet.TreeNode{Val: 3}}, Right: &leet.TreeNode{Val: 6, Left: &leet.TreeNode{Val: 5}}}
+
+		itera := leet.BSTConstruct(&bst)
+
+		assert.Equal(t, 1, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 2, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 3, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 4, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 5, itera.Next())
+		assert.Equal(t, true, itera.HasNext())
+		assert.Equal(t, 6, itera.Next())
+		assert.Equal(t, false, itera.HasNext())
+
+	})
+}

@@ -1938,3 +1938,59 @@ func EvalRPN(input []string) int {
 
 	return stack[0]
 }
+
+// Binary Search Tree Iterator
+// We want to have a type that represents a binary search tree as an iterator
+// that is, that we want a structure that implements .next() and hasNext()
+// that will provide us a pointer to the next object in the tree
+// we start with a root of a TreeNode that has a Val and a Left and a Right
+// We want to traverse this in-order so that it gives us the values in numerical
+// order. That means a next should look for the next most left point and if not
+// recursively look right and up.
+// immediate thought is to do a in-order traversal and push things to a stack
+// and then use the stack to pull next otherwise it would be hard to traverse the
+// tree backwards. HasNext would just be a check of if there is anything in the stack
+// after traversal?
+// thinking: so if i were to traverse the tree for the base case it would go
+// 3 with [7]
+// look right, nothing so go to 7
+// then 9 with  [15]
+// no rigt so go back to 15
+//  20 with []
+// nothing to traverse -> no next
+
+type BSTIterator struct {
+	stack   []*TreeNode
+	curr    *TreeNode
+	hasNext bool
+}
+
+func BSTConstruct(root *TreeNode) BSTIterator {
+	return BSTIterator{stack: []*TreeNode{}, curr: root, hasNext: true}
+}
+
+func (this *BSTIterator) Next() int {
+	var output int
+	for {
+		for this.curr != nil {
+			this.stack = append([]*TreeNode{this.curr}, this.stack...)
+			this.curr = this.curr.Left
+		}
+
+		this.curr = this.stack[0]
+		this.stack = this.stack[1:]
+
+		if this.curr != nil {
+			output = this.curr.Val
+			this.curr = this.curr.Right
+			if len(this.stack) == 0 && this.curr == nil {
+				this.hasNext = false
+			}
+			return output
+		}
+	}
+}
+
+func (this *BSTIterator) HasNext() bool {
+	return this.hasNext
+}

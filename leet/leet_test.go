@@ -1225,3 +1225,16 @@ func TestBSTIterator(t *testing.T) {
 
 	})
 }
+
+func TestCountCompleteNodes(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		assert.Equal(t, 3, leet.CountCompleteNodes(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3}}))
+	})
+	t.Run("base case diff", func(t *testing.T) {
+		t.Parallel()
+
+		assert.Equal(t, 4, leet.CountCompleteNodes(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 4}}}))
+	})
+}

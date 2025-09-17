@@ -1994,3 +1994,45 @@ func (this *BSTIterator) Next() int {
 func (this *BSTIterator) HasNext() bool {
 	return this.hasNext
 }
+
+func CountCompleteNodes(root *TreeNode) int {
+	// So we take complete tree nodes as input
+	// they are filled apart from the last layer which
+	// is filled from the left
+	// im thought is if we can find the first empty point
+	// i.e. the lowest right might node
+	// we should be able to count how many left and rights we have
+	// done and therefore no how many layers and where the last filled
+	// point is and do some calculation like 2^n - how many le
+	// but now thinking about it that might not work as what if the
+	// last node is in the left half of the tree.
+	// so we may just need to do a BFS and just wait til we get to the
+	// last layer and then count how many are there
+	if root == nil {
+		return 0
+	}
+	queue := []*TreeNode{root}
+	count := 1
+
+	for len(queue) > 0 {
+		l := len(queue)
+
+		for _, node := range queue {
+			if node.Left != nil {
+				count++
+
+				queue = append(queue, node.Left)
+			}
+
+			if node.Right != nil {
+				count++
+				queue = append(queue, node.Right)
+			}
+
+		}
+		queue = queue[l:]
+		fmt.Println(queue)
+	}
+	return count
+
+}

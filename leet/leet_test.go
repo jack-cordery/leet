@@ -1238,3 +1238,29 @@ func TestCountCompleteNodes(t *testing.T) {
 		assert.Equal(t, 4, leet.CountCompleteNodes(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 4}}}))
 	})
 }
+
+func TestLowestCommonAncestor(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		p, q := leet.TreeNode{Val: 5}, leet.TreeNode{Val: 6}
+		root := leet.TreeNode{Val: 4, Left: &p, Right: &q}
+
+		input := &leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2}, Right: &leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 4, Left: &p, Right: &q}}}
+
+		actual := leet.LowestCommonAncestor(input, &p, &q)
+
+		assert.Equal(t, &root, actual)
+
+	})
+	t.Run("nil case", func(t *testing.T) {
+		t.Parallel()
+
+		root := leet.TreeNode{}
+
+		actual := leet.LowestCommonAncestor(&root, nil, nil)
+
+		assert.Nil(t, actual)
+
+	})
+}

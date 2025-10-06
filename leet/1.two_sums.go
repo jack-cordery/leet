@@ -2036,3 +2036,41 @@ func CountCompleteNodes(root *TreeNode) int {
 	return count
 
 }
+
+// LowestCommonAncestor takes the root, r, of a Binary Tree, T,  and two nodes, p and q,  and returns the lowest node
+// in T that has both p and q as its decendents. We consider a node to be a decendent of itself
+func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	// so we want to tackle this recursively.
+	// We are going to recuriselvy travel down the tree looking for p and q
+	// if we find one then we can keep the root fixed on that side and continuing
+	// looking elsewhere. Either we find it elsewhere and calculate the root from
+	// there (?) or we dont find it and therefore the other root is the LCA.
+
+	// if we are at the end return nil
+	if root == nil {
+		return nil
+	}
+
+	// if we find a root stick
+	if root == p || root == q {
+		return root
+	}
+
+	// recurse left and right
+	// this recurses down the whole tree until we get a stop at a root
+	// therefore left and right will tell us either we have found
+	// that root is the LCA or that the left or right is
+	left := LowestCommonAncestor(root.Left, p, q)
+	right := LowestCommonAncestor(root.Right, p, q)
+
+	// then rooot is the LCA as we have found it on both sides of the tree
+	if left != nil && right != nil {
+		return root
+	}
+
+	if left != nil {
+		return left
+	} else {
+		return right
+	}
+}

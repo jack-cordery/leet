@@ -2074,3 +2074,36 @@ func LowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 		return right
 	}
 }
+
+// LevelOrder returns the values of a BST as slices of integers reading left
+// to right for each level of the tree
+func LevelOrder(root *TreeNode) [][]int {
+	// ok so here we just want to do a BFS returning a slice for
+	// each level. So we will just need to use a queue to manage
+	// this iteratively
+
+	if root == nil {
+		return [][]int{}
+	}
+	queue := []*TreeNode{root}
+	l := len(queue)
+	levelOrder := [][]int{}
+	for l > 0 {
+		level := []int{}
+		for _, q := range queue[:l] {
+			level = append(level, q.Val)
+			if q.Left != nil {
+				queue = append(queue, q.Left)
+			}
+			if q.Right != nil {
+				queue = append(queue, q.Right)
+			}
+		}
+		levelOrder = append(levelOrder, level)
+		queue = queue[l:]
+		l = len(queue)
+
+	}
+	return levelOrder
+
+}

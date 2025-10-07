@@ -1264,3 +1264,26 @@ func TestLowestCommonAncestor(t *testing.T) {
 
 	})
 }
+
+func TestLevelOrder(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		bst := leet.TreeNode{Val: 4, Left: &leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 1}, Right: &leet.TreeNode{Val: 3}}, Right: &leet.TreeNode{Val: 6, Left: &leet.TreeNode{Val: 5}}}
+
+		expected := [][]int{[]int{4}, []int{2, 6}, []int{1, 3, 5}}
+		actual := leet.LevelOrder(&bst)
+
+		assert.Equal(t, expected, actual)
+
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.LevelOrder(nil)
+		expected := [][]int{}
+
+		assert.Equal(t, expected, actual)
+	})
+}

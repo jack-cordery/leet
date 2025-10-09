@@ -1287,3 +1287,37 @@ func TestLevelOrder(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestThreeSum2(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		input := []int{-1, 0, 1, 2, -1, -4}
+
+		actual := leet.ThreeSum2(input)
+		expected := [][]int{{-1, 0, 1}, {-1, -1, 2}}
+
+		assert.Equal(t, expected, actual)
+	})
+
+	t.Run("null case", func(t *testing.T) {
+		t.Parallel()
+
+		input := []int{1, 2, -2, -1}
+
+		actual := leet.ThreeSum2(input)
+		expected := [][]int{}
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("short case", func(t *testing.T) {
+		t.Parallel()
+
+		input := []int{0, 0, 0}
+
+		actual := leet.ThreeSum2(input)
+		expected := [][]int{{0, 0, 0}}
+
+		assert.Equal(t, expected, actual)
+	})
+}

@@ -5,6 +5,7 @@ import (
 	"log"
 	"maps"
 	"math"
+	"slices"
 	"strconv"
 )
 
@@ -2106,4 +2107,46 @@ func LevelOrder(root *TreeNode) [][]int {
 	}
 	return levelOrder
 
+}
+
+type Triplet struct {
+	A int
+	B int
+	C int
+}
+
+// ThreeSum returns the unique triplets in an array of integers that sum to zero
+func ThreeSum2(list []int) [][]int {
+	// ok so i want to do something with a hashmap and pairs of points
+	// if this works it will get me to O(N^2)
+	// for each pair store the sum and then go through the list to check
+	// there probably is some kind of trick with 3 pointers but can try after
+	// ok so what i think i want to do instead is reform the problem
+	// so that its a_i + a_j = -a_k and that way its two sum with a constant and i
+	// just need to go through O(N) twice
+	triplets := make(map[Triplet]bool)
+
+	for i, l := range list {
+		// now do two pointer sum input := []int{1, 2, -2, -1}
+
+		deltas := make(map[int]int)
+		for j, r := range list {
+			if j == i {
+				continue
+			}
+			delta := -l - r
+			if k, ok := deltas[r]; ok {
+				trip := []int{r, l, k}
+				slices.Sort(trip)
+				triplets[Triplet{trip[0], trip[1], trip[2]}] = true
+			} else {
+				deltas[delta] = r
+			}
+		}
+	}
+	result := [][]int{}
+	for k := range triplets {
+		result = append(result, []int{k.A, k.B, k.C})
+	}
+	return result
 }

@@ -1321,3 +1321,30 @@ func TestThreeSum2(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestStrStr(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+		needle, haystack := "sad", "sadbutsad"
+
+		expected := 0
+		actual := leet.StrStr(needle, haystack)
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("null case", func(t *testing.T) {
+		t.Parallel()
+		needle, haystack := "sadbutsad", "happy"
+
+		expected := -1
+		actual := leet.StrStr(needle, haystack)
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("longer case", func(t *testing.T) {
+		t.Parallel()
+		needle, haystack := "sad", "dadbutsad"
+
+		expected := 6
+		actual := leet.StrStr(needle, haystack)
+		assert.Equal(t, expected, actual)
+	})
+}

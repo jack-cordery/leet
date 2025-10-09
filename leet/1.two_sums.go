@@ -2150,3 +2150,23 @@ func ThreeSum2(list []int) [][]int {
 	}
 	return result
 }
+
+// strStr finds the first index of needle in the haystack
+// returns -1 if needle is not in the haystack
+func StrStr(needle, haystack string) int {
+	// ok so we just want to have a sliding window
+	// that moves needle along the haystack checking for equality
+	chars := []byte(haystack)
+	needleChars := []byte(needle)
+	i, j := 0, len(needleChars)
+	for j <= len(chars) {
+
+		possibleNeedle := chars[i:j]
+		if slices.Equal(possibleNeedle, needleChars) {
+			return i
+		}
+		i++
+		j++
+	}
+	return -1
+}

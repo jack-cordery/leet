@@ -2170,3 +2170,35 @@ func StrStr(needle, haystack string) int {
 	}
 	return -1
 }
+
+// LongestConcecutive returns the longest concecutive sequence of numbers
+// from a slice of integers. i.e. [1,1, 400, 3, 2] -> len([1,2,3])
+func LongestConcecutive(nums []int) int {
+	set := make(map[int]struct{})
+	result := 0
+
+	for _, n := range nums {
+		set[n] = struct{}{}
+	}
+
+	for n := range set {
+		m := 1
+		if _, ok := set[n-1]; !ok {
+			// this means  n is the start so lets go up until we
+			// end the sequence
+			for {
+				_, found := set[n+m]
+				if found {
+					m++
+				} else {
+					result = max(result, m)
+					break
+				}
+
+			}
+
+		}
+	}
+	return result
+
+}

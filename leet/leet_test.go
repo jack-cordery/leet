@@ -1348,3 +1348,50 @@ func TestStrStr(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestLongestConcecutive(t *testing.T) {
+	t.Run("base", func(t *testing.T) {
+		// t.Parallel()
+
+		input := []int{1, 1, 3, 2, 4}
+
+		actual := leet.LongestConcecutive(input)
+		expected := 4
+
+		assert.Equal(t, expected, actual)
+
+	})
+	t.Run("base 2", func(t *testing.T) {
+		// t.Parallel()
+
+		input := []int{100, 4, 200, 1, 3, 2}
+
+		actual := leet.LongestConcecutive(input)
+		expected := 4
+
+		assert.Equal(t, expected, actual)
+
+	})
+	t.Run("base 3", func(t *testing.T) {
+		// t.Parallel()
+
+		input := []int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}
+
+		actual := leet.LongestConcecutive(input)
+		expected := 9
+
+		assert.Equal(t, expected, actual)
+
+	})
+	t.Run("base 4", func(t *testing.T) {
+		// t.Parallel()
+
+		input := []int{1, 0, 1, 2}
+
+		actual := leet.LongestConcecutive(input)
+		expected := 3
+
+		assert.Equal(t, expected, actual)
+
+	})
+}

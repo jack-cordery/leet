@@ -1398,6 +1398,7 @@ func TestLongestConcecutive(t *testing.T) {
 
 func TestMaxIncreasingSubarrays(t *testing.T) {
 	t.Run("base", func(t *testing.T) {
+		t.Parallel()
 
 		input := []int{2, 5, 7, 8, 9, 2, 3, 4, 3, 1}
 		expected := 3
@@ -1409,6 +1410,7 @@ func TestMaxIncreasingSubarrays(t *testing.T) {
 	})
 
 	t.Run("base 2", func(t *testing.T) {
+		t.Parallel()
 		input := []int{0, -10, 9, 12, -19, -18, 20}
 		expected := 3
 
@@ -1418,6 +1420,7 @@ func TestMaxIncreasingSubarrays(t *testing.T) {
 
 	})
 	t.Run("base 3", func(t *testing.T) {
+		t.Parallel()
 		input := []int{19, 4, 19, 6, 18}
 		expected := 2
 
@@ -1427,4 +1430,23 @@ func TestMaxIncreasingSubarrays(t *testing.T) {
 
 	})
 
+}
+
+func TestFinalValueAfterOperations(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		input := []string{"++X", "X++"}
+		expected := 2
+		actual := leet.FinalValueAfterOperations(input)
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		t.Parallel()
+
+		input := []string{"++X", "X--"}
+		expected := 0
+		actual := leet.FinalValueAfterOperations(input)
+		assert.Equal(t, expected, actual)
+	})
 }

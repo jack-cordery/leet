@@ -2228,3 +2228,26 @@ func MaxIncreasingSubarrays(nums []int) int {
 
 	return k
 }
+
+// FinalValueAfterOperations will take a series of operations
+// of either ++X, X++, X--, --X and tell us the value
+func FinalValueAfterOperations(operations []string) int {
+	result := 0
+	for _, op := range operations {
+		switch op {
+		case "--X":
+			{
+				result--
+			}
+		case "X--":
+			{
+				result--
+			}
+		default:
+			{
+				result++
+			}
+		}
+	}
+	return result
+}

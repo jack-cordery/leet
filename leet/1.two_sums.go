@@ -2251,3 +2251,28 @@ func FinalValueAfterOperations(operations []string) int {
 	}
 	return result
 }
+
+func InOrderTraversal(root *TreeNode) []int {
+	// we want to perform an in order traversal and
+	// so that means add to the queue in a specific way but essentially we
+	// want the left most first etc.
+	// take from lhs of stack and add back left, centre, right to the lhs of the stack
+	// kee
+	curr := root
+	stack := []*TreeNode{}
+	result := []int{}
+
+	for curr != nil || len(stack) > 0 {
+		for curr != nil {
+			stack = append([]*TreeNode{curr}, stack...)
+			curr = curr.Left
+		}
+
+		curr = stack[0]
+		result = append(result, curr.Val)
+		stack = stack[1:]
+		curr = curr.Right
+	}
+	return result
+
+}

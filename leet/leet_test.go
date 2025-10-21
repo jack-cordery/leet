@@ -1450,3 +1450,14 @@ func TestFinalValueAfterOperations(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestInOrderTraversal(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.InOrderTraversal(&leet.TreeNode{Val: 1, Left: &leet.TreeNode{Val: 2, Left: &leet.TreeNode{Val: 4}, Right: &leet.TreeNode{Val: 5}}, Right: &leet.TreeNode{Val: 3, Left: &leet.TreeNode{Val: 6}}})
+		expected := []int{4, 2, 5, 1, 6, 3}
+
+		assert.Equal(t, expected, actual)
+	})
+}

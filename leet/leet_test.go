@@ -1461,3 +1461,54 @@ func TestInOrderTraversal(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestClimbStairs(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.ClimbingStairs(1)
+		expected := 1
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.ClimbingStairs(2)
+		expected := 2
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 3", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.ClimbingStairs(3)
+		expected := 3
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 4", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.ClimbingStairs(4)
+		expected := 5
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 5", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.ClimbingStairs(5)
+		expected := 8
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 6", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.ClimbingStairs(6)
+		expected := 13
+
+		assert.Equal(t, expected, actual)
+	})
+}

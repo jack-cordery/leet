@@ -2276,3 +2276,18 @@ func InOrderTraversal(root *TreeNode) []int {
 	return result
 
 }
+
+func ClimbingStairs(n int) int {
+	// so the sequence is actually the fibonacci sequence
+	// 1,1,2,3,5,8
+
+	prev := 1
+	curr := 1
+	for i := 1; i < n; i++ {
+		temp := curr + prev
+		prev = curr
+		curr = temp
+	}
+	return curr
+
+}

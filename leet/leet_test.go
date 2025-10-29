@@ -1512,3 +1512,31 @@ func TestClimbStairs(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestSmallestNumber(t *testing.T) {
+
+	t.Run("base case 1", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.SmallestNumber(1)
+		expected := 1
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 4", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.SmallestNumber(4)
+		expected := 7
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 10", func(t *testing.T) {
+		t.Parallel()
+
+		actual := leet.SmallestNumber(10)
+		expected := 15
+
+		assert.Equal(t, expected, actual)
+	})
+}

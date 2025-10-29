@@ -2291,3 +2291,17 @@ func ClimbingStairs(n int) int {
 	return curr
 
 }
+
+// SmallestNumber returns the next number (inclusive of n) s.t. its bits are all set i.e. 11111
+func SmallestNumber(n int) int {
+	// ok so for a number to be 111111
+	// is it a power of 2 + 1? i.e. 1-> 1,  3 -> 11, 5-> 111, 9 -> 1111
+	// a solution would then just be iterate through the sequence until
+	// a number is equal to or greater than n
+	// can i skip iteration?
+	// yep can skip by just taking logs
+
+	m := int(math.Ceil(math.Log2(float64(n + 1))))
+
+	return (1 << m) - 1
+}

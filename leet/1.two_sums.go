@@ -2305,3 +2305,37 @@ func SmallestNumber(n int) int {
 
 	return (1 << m) - 1
 }
+
+// IsSubSequence validates whether s is a subsequence of t i.e. (ace) -> (alice)
+func IsSubSequence(s, t string) bool {
+	// so its a two-pointer problem i guess we want to move until we find a letter
+	// and then extend or catch up the pointers until we either reach the end without
+	// finding all the letters or we find all the letters
+	if s == "" {
+		return true
+	}
+	left, right, evalLeft, evalRight := 0, 0, 0, 0
+	lastT := len(t)
+	lastS := len(s)
+	for {
+		if right >= lastT {
+			return false
+		}
+		rightChar := t[right]
+		evaluationChar := s[evalRight]
+
+		if rightChar != evaluationChar {
+			right++
+		} else {
+			left = right
+			evalLeft = evalRight
+			right++
+			evalRight++
+		}
+		fmt.Printf("left %d, right %d, evalLeft %d, evalRight %d\n", left, right, evalLeft, evalRight)
+		if evalRight == lastS && evalLeft == (lastS-1) {
+			return true
+		}
+
+	}
+}

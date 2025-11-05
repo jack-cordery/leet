@@ -1540,3 +1540,39 @@ func TestSmallestNumber(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestIsSubsequence(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+		s, u := "ace", "alice"
+		expected := true
+		actual := leet.IsSubSequence(s, u)
+
+		assert.Equal(t, expected, actual)
+	})
+
+	t.Run("base case 1", func(t *testing.T) {
+		t.Parallel()
+		s, u := "abc", "ahbgdc"
+		expected := true
+		actual := leet.IsSubSequence(s, u)
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		t.Parallel()
+		s, u := "axc", "ahbgdc"
+		expected := false
+		actual := leet.IsSubSequence(s, u)
+
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("null case", func(t *testing.T) {
+		t.Parallel()
+		s, u := "", ""
+		expected := true
+		actual := leet.IsSubSequence(s, u)
+
+		assert.Equal(t, expected, actual)
+	})
+}

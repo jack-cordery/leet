@@ -2328,33 +2328,17 @@ func IsSubSequence(s, t string) bool {
 // SearchInsert finds the position of the target if it were to be inserted into a sorted
 // array nums. If target exists in nums it gives the position of the first found value
 func SearchInsert2(nums []int, target int) int {
-
-	if len(nums) == 0 {
-		return 0
-	}
-
 	l, h := 0, len(nums)-1
-	m := h / 2
-
-	for h-l > 1 {
+	for l <= h {
+		m := (h + l) / 2
 		if nums[m] == target {
 			return m
 		} else if nums[m] > target {
-			h = max(0, m-1)
+			h = m - 1
 		} else {
-			l = min(m+1, len(nums)-1)
+			l = m + 1
 		}
-		m = ((h - l) / 2) + l
 	}
-	if nums[l] >= target {
-		return l
-	}
-	if nums[h] == target {
-		return h
-	}
-	if target > nums[h] {
-		return h + 1
-	}
-	return l + 1
+	return l
 
 }

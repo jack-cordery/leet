@@ -1576,3 +1576,33 @@ func TestIsSubsequence(t *testing.T) {
 		assert.Equal(t, expected, actual)
 	})
 }
+
+func TestSearchInsert(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 2, leet.SearchInsert2([]int{1, 3, 5, 6}, 5))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 3, leet.SearchInsert2([]int{1, 3, 4, 6}, 5))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 4, leet.SearchInsert2([]int{1, 3, 5, 6}, 7))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 1, leet.SearchInsert2([]int{1, 3, 5, 6}, 2))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 0, leet.SearchInsert2([]int{}, 7))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 0, leet.SearchInsert2([]int{1}, 0))
+	})
+
+	t.Run("base case", func(t *testing.T) {
+		assert.Equal(t, 1, leet.SearchInsert2([]int{1, 3}, 2))
+	})
+}

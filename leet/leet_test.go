@@ -1606,3 +1606,41 @@ func TestSearchInsert(t *testing.T) {
 		assert.Equal(t, 1, leet.SearchInsert2([]int{1, 3}, 2))
 	})
 }
+
+func TestNumIslands(t *testing.T) {
+	t.Run("base case", func(t *testing.T) {
+		t.Parallel()
+		input := [][]byte{
+			{'1', '1', '1', '1', '0'},
+			{'1', '1', '0', '1', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '0', '0', '0'},
+		}
+		expected := 1
+		actual := leet.NumIslands(input)
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 2", func(t *testing.T) {
+		t.Parallel()
+		input := [][]byte{
+			{'1', '1', '0', '0', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '1', '0', '0'},
+			{'0', '0', '0', '1', '1'},
+		}
+		expected := 3
+		actual := leet.NumIslands(input)
+		assert.Equal(t, expected, actual)
+	})
+	t.Run("base case 3", func(t *testing.T) {
+		t.Parallel()
+		input := [][]byte{
+			{'1', '1', '1'},
+			{'0', '1', '0'},
+			{'1', '1', '1'},
+		}
+		expected := 1
+		actual := leet.NumIslands(input)
+		assert.Equal(t, expected, actual)
+	})
+}

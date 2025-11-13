@@ -2342,3 +2342,45 @@ func SearchInsert2(nums []int, target int) int {
 	return l
 
 }
+
+type Point struct {
+	X int
+	Y int
+}
+
+// NumIslands counts the number of individual islands there is in a grid of 1s and 0s
+func NumIslands(grid [][]byte) int {
+	numIslands := 0
+
+	for j, col := range grid {
+		for i, el := range col {
+			//if the element is a 1 and it has not been seen before
+			if el == '1' {
+				numIslands++
+				search := []Point{{i, j}}
+				for len(search) > 0 {
+					curr := search[0]
+					search = search[1:]
+					if grid[curr.Y][curr.X] == '1' {
+						grid[curr.Y][curr.X] = '0'
+						// now add all 1s around to islands
+						if curr.X > 0 && grid[curr.Y][curr.X-1] == '1' {
+							search = append(search, Point{curr.X - 1, curr.Y})
+						}
+						if curr.Y > 0 && grid[curr.Y-1][curr.X] == '1' {
+							search = append(search, Point{curr.X, curr.Y - 1})
+						}
+						if curr.X < len(grid[0])-1 && grid[curr.Y][curr.X+1] == '1' {
+							search = append(search, Point{curr.X + 1, curr.Y})
+						}
+
+						if curr.Y < len(grid)-1 && grid[curr.Y+1][curr.X] == '1' {
+							search = append(search, Point{curr.X, curr.Y + 1})
+						}
+					}
+				}
+			}
+		}
+	}
+	return numIslands
+}
